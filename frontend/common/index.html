@@ -15,63 +15,65 @@
         <div class="task-section__input-menu input-menu">
             <ul class="input-menu__input-list input-list">
                 <li class="input-list__element input-list__x-choice x-choice">
-                    <span>Изменение X:</span>
-                    <ul class="x-choice__checkbox-list x-checkbox-list">
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_first">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_first" type="checkbox">
-                                -5
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_second">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_second" type="checkbox">
-                                -4
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_third">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_third" type="checkbox">
-                                -3
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_forth">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_forth" type="checkbox">
-                                -2
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_fifth">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_fifth" type="checkbox">
-                                -1
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_sixth">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_sixth" type="checkbox">
-                                0
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_seventh">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_seventh" type="checkbox">
-                                1
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_eighth">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_eighth" type="checkbox">
-                                2
-                            </label>
-                        </li>
-                        <li class="x-checkbox-list__element checkbox-list-element">
-                            <label class="checkbox-list-element-text checkbox-element-text_ninth">
-                                <input class="checkbox-list-element-input checkbox-list-element-input_ninth" type="checkbox">
-                                3
-                            </label>
-                        </li>
-                    </ul>
+                    <div>
+                        <span>Изменение X:</span>
+                        <ul class="x-choice__checkbox-list x-checkbox-list">
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_first">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_first" type="checkbox">
+                                    -5
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_second">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_second" type="checkbox">
+                                    -4
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_third">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_third" type="checkbox">
+                                    -3
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_forth">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_forth" type="checkbox">
+                                    -2
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_fifth">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_fifth" type="checkbox">
+                                    -1
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_sixth">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_sixth" type="checkbox">
+                                    0
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_seventh">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_seventh" type="checkbox">
+                                    1
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_eighth">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_eighth" type="checkbox">
+                                    2
+                                </label>
+                            </li>
+                            <li class="x-checkbox-list__element checkbox-list-element">
+                                <label class="checkbox-list-element-text checkbox-element-text_ninth">
+                                    <input class="checkbox-list-element-input checkbox-list-element-input_ninth" type="checkbox">
+                                    3
+                                </label>
+                            </li>
+                        </ul>
+                    </div>
                 </li>
                 <li class="input-list__element input-list__y-choice y-choice">
                     <label class="y-choice-text">
@@ -90,8 +92,12 @@
                 </li>
             </ul>
         </div>
+        <div class="task-section__coordinate-plane coordinate-plane">
+            <canvas class="coordinate-plane__canvas canvas" id="canvas" width="600" height="600"></canvas>
+        </div>
     </section>
-    <script src="blocks/confirm.js"></script>
+    <script type="module" src="blocks/confirm.js"></script>
     <script src="blocks/checkbox-list-element-input.js"></script>
+    <script type="module" src="blocks/canvas.js"></script>
 </body>
 </html>
