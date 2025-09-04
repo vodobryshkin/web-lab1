@@ -1,4 +1,4 @@
-import {IS_NOT_A_NUMBER_CODE, NUMBER_IS_OUT_OF_RANGE_CODE, BLANK_IS_EMPTY_CODE, validateNumber} from '../tools/number-validation.js'
+import {IS_NOT_A_NUMBER_CODE, NUMBER_IS_OUT_OF_RANGE_CODE, BLANK_IS_EMPTY_CODE, validateNumber} from './number-validation.js'
 
 const Y_LEFT_BORDER = -3;
 const Y_RIGHT_BORDER = 3;
@@ -43,7 +43,7 @@ function validate() {
     }
 
     if (r === IS_NOT_A_NUMBER_CODE) {
-        alert("Ошибка: Параметр Y не является числом.");
+        alert("Ошибка: Параметр R не является числом.");
         return;
     }
 
