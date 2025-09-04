@@ -3,7 +3,7 @@ const rLength = 250;
 
 document.addEventListener("DOMContentLoaded", () => draw(DEFAULT_R_NAME));
 
-function draw(rName) {
+export function draw(rName) {
     drawCoordinatePlane(rName);
     drawAreas();
 }
