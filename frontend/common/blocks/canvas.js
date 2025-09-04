@@ -107,3 +107,19 @@ function drawAreas() {
     ctx.fill();
     ctx.closePath();
 }
+
+export function drawPoint(x, y, r) {
+    const canvas = document.getElementById("canvas");
+    const ctx = canvas.getContext("2d");
+    ctx.fillStyle = "rgba(0, 0, 255)";
+
+    let correctX = x * (rLength / r) + canvas.width / 2;
+    let correctY = -y * (rLength / r) + canvas.width / 2;
+
+    // alert(`x=${correctX} y=${correctY}`);
+
+    ctx.beginPath();
+    ctx.arc(correctX, correctY, 5, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.closePath();
+}

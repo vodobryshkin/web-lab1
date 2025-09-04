@@ -1,4 +1,5 @@
 import {IS_NOT_A_NUMBER_CODE, NUMBER_IS_OUT_OF_RANGE_CODE, BLANK_IS_EMPTY_CODE, validateNumber} from './number-validation.js'
+import {drawPoint} from './canvas.js'
 
 const Y_LEFT_BORDER = -3;
 const Y_RIGHT_BORDER = 3;
@@ -52,7 +53,7 @@ function validate() {
         return;
     }
 
-    alert(`Все OK: Вот необходимая информация: x=${x} y=${y} R=${r}`);
+    drawPoint(x, y, r);
 }
 
 function getChosenX() {
