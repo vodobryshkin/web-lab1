@@ -1,4 +1,4 @@
-import {validateNumber} from "./number-validation.js";
+import {validateNumber} from "../tools/number-validation.js";
 import {draw} from "./canvas.js";
 
 const rChoiceInput = document.getElementById("r-choice-input");

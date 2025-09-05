@@ -1,7 +1,6 @@
-const DEFAULT_R_NAME = "R";
-const rLength = 250;
+import {DEFAULT_R_NAME} from "../tools/update.js";
 
-document.addEventListener("DOMContentLoaded", () => draw(DEFAULT_R_NAME));
+const rLength = 250;
 
 export function draw(rName) {
     drawCoordinatePlane(rName);
