@@ -1,4 +1,4 @@
-export const NUMBER_REGEX = /^-?\d*[.,]?\d+$/;
+export const NUMBER_REGEX = /^-?\d*.?\d+$/;
 
 export const IS_NOT_A_NUMBER_CODE = "IS_NOT_A_NUMBER";
 export const NUMBER_IS_OUT_OF_RANGE_CODE = "NUMBER_IS_OUT_OF_RANGE";
