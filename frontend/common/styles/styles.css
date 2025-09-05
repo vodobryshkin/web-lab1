@@ -1,0 +1,167 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    font-size: 20px;
+
+    background-color: #FAFAFA;
+}
+
+header {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 100px;
+
+    font-family: "SansSerif", sans-serif;
+    font-size: 20px;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.3);
+    color: #FFFFFF;
+
+    background-color: #2E7D32;
+}
+
+.task-section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    color: #212121;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+}
+
+.system-menu {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.task-section > div {
+    margin: 15px 0;
+}
+
+.input-menu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1);
+    border: 1px #212121 solid;
+    border-radius: 5px;
+
+    background-color: #FFFFFF
+}
+
+.system-menu__element {
+    margin-left: 5px;
+}
+
+.input-list {
+    margin: 0;
+}
+
+.confirm__button {
+    width: auto;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    max-width: 200px;
+    align-self: flex-start;
+}
+
+.input-list li {
+    display: inline-flex;
+    justify-content: flex-start;
+
+    list-style-type: none;
+}
+
+.input-list > li {
+    margin: 15px;
+}
+
+ul {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+li label {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.checkbox-list-element-text {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+table {
+    margin-left: 20px;
+    margin-right: 120px;
+    margin-top: 15px;
+
+    border-collapse: collapse;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1);
+    border-radius: 20px;
+    border: #212121 2px solid;
+    background-color: #FFFFFF;
+}
+
+table th {
+    padding: 5px 30px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-radius: 8px;
+    border: #212121 2px solid;
+}
+
+table td {
+    padding: 5px 15px;
+
+    text-align: center;
+    vertical-align: middle;
+
+    border-radius: 8px;
+    border: #212121 2px solid;
+}
+
+.checkbox-list-element-input  {
+    transform: scale(1.5);
+
+    accent-color: rgba(255, 112, 67, 0.3);
+
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.1);
+}
+
+#y-choice-input, #r-choice-input {
+    width: 193px;
+    height: 25px;
+
+    font-size: 17px;
+
+    border-radius: 8px;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1);
+    border: #212121 1px solid;
+}
+
+#confirm-button {
+    margin-left: 0;
+    height: 40px;
+    width: 200px;
+    align-self: center;
+
+    color: #FFFFFF;
+    font-size: 17px;
+
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 8px 8px 8px rgba(0,0,0,0.1);
+    background-color: #FF7043;
+}
