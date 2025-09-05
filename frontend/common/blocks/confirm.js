@@ -1,6 +1,7 @@
 import {IS_NOT_A_NUMBER_CODE, NUMBER_IS_OUT_OF_RANGE_CODE, BLANK_IS_EMPTY_CODE, validateNumber} from '../tools/number-validation.js'
 import {drawPoint} from './canvas.js'
 import {pointStorage} from '../tools/storage-work.js'
+import {toast} from "../tools/toast.js";
 
 const Y_LEFT_BORDER = -3;
 const Y_RIGHT_BORDER = 3;
@@ -16,42 +17,40 @@ function validate() {
     let x = getChosenX();
 
     if (x === 'DEFAULT_X') {
-        alert("Ошибка: Параметр X не выбран.");
+        toast("Параметр X не выбран");
         return;
     }
 
     let y = validateNumber(document.getElementById("y-choice-input").value, Y_LEFT_BORDER, Y_RIGHT_BORDER);
 
-    if (y === BLANK_IS_EMPTY_CODE) {
-        alert("Ошибка: Поля ввода Y является пустым.");
-        return;
-    }
+    switch (y) {
+        case BLANK_IS_EMPTY_CODE :
+            toast("Поля ввода параметра Y является пустым");
+            return;
 
-    if (y === IS_NOT_A_NUMBER_CODE) {
-        alert("Ошибка: Параметр Y не является числом.");
-        return;
-    }
+        case IS_NOT_A_NUMBER_CODE :
+            toast("Параметр Y не является числом");
+            return;
 
-    if (y === NUMBER_IS_OUT_OF_RANGE_CODE) {
-        alert(`Ошибка: Параметр Y выходит за границы (${Y_LEFT_BORDER}...${Y_RIGHT_BORDER}).`);
-        return;
+        case NUMBER_IS_OUT_OF_RANGE_CODE :
+            toast(`Параметр Y выходит за границы (${Y_LEFT_BORDER}...${Y_RIGHT_BORDER})`);
+            return;
     }
 
     let r = validateNumber(document.getElementById("r-choice-input").value, R_LEFT_BORDER, R_RIGHT_BORDER);
 
-    if (r === BLANK_IS_EMPTY_CODE) {
-        alert("Ошибка: Поля ввода R является пустым.");
-        return;
-    }
+    switch (r) {
+        case BLANK_IS_EMPTY_CODE :
+            toast("Поля ввода параметра R является пустым");
+            return;
 
-    if (r === IS_NOT_A_NUMBER_CODE) {
-        alert("Ошибка: Параметр R не является числом.");
-        return;
-    }
+        case IS_NOT_A_NUMBER_CODE :
+            toast("Параметр R не является числом");
+            return;
 
-    if (r === NUMBER_IS_OUT_OF_RANGE_CODE) {
-        alert(`Ошибка: Параметр R выходит за границы (${R_LEFT_BORDER}...${R_RIGHT_BORDER}).`);
-        return;
+        case NUMBER_IS_OUT_OF_RANGE_CODE :
+            toast(`Параметр R выходит за границы (${R_LEFT_BORDER}...${R_RIGHT_BORDER})`);
+            return;
     }
 
     pointStorage.addPoint(x, y);
