@@ -89,7 +89,7 @@ function drawCoordinatePlane(rName) {
 function drawAreas() {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "rgba(0, 0, 255, 0.2)";
+    ctx.fillStyle = "rgba(37,244,5,0.2)";
 
     ctx.beginPath();
     ctx.lineCap = "round";
@@ -111,7 +111,7 @@ function drawAreas() {
 export function drawPoint(x, y, r) {
     const canvas = document.getElementById("canvas");
     const ctx = canvas.getContext("2d");
-    ctx.fillStyle = "rgba(0, 0, 255)";
+    ctx.fillStyle = "rgba(37,244,5)";
 
     let correctX = x * (rLength / r) + canvas.width / 2;
     let correctY = -y * (rLength / r) + canvas.width / 2;
