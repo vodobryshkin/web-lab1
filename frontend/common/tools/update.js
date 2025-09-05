@@ -1,4 +1,5 @@
 import {draw} from "../blocks/canvas.js";
+import {pointStorage} from "./storage-work.js";
 
 export const DEFAULT_R_NAME = "R";
 
@@ -16,6 +17,8 @@ function reset(r) {
     for (let i = 0; i < checkboxListElements.length; i++) {
         checkboxListElements[i].checked = false;
     }
+
+    pointStorage.clearPoints();
 
     draw(r);
 }

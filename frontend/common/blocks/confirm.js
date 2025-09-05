@@ -1,5 +1,6 @@
 import {IS_NOT_A_NUMBER_CODE, NUMBER_IS_OUT_OF_RANGE_CODE, BLANK_IS_EMPTY_CODE, validateNumber} from '../tools/number-validation.js'
 import {drawPoint} from './canvas.js'
+import {pointStorage} from '../tools/storage-work.js'
 
 const Y_LEFT_BORDER = -3;
 const Y_RIGHT_BORDER = 3;
@@ -52,6 +53,8 @@ function validate() {
         alert(`Ошибка: Параметр R выходит за границы (${R_LEFT_BORDER}...${R_RIGHT_BORDER}).`);
         return;
     }
+
+    pointStorage.addPoint(x, y);
 
     drawPoint(x, y, r);
 }

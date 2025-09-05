@@ -19,6 +19,7 @@ header {
     color: #FFFFFF;
 
     background-color: #2E7D32;
+    box-shadow: 8px 0 8px rgba(0,0,0,0.1);
 }
 
 .task-section {

@@ -1,4 +1,5 @@
 import {DEFAULT_R_NAME} from "../tools/update.js";
+import {pointStorage} from "../tools/storage-work.js";
 
 const rLength = 250;
 
@@ -105,6 +106,14 @@ function drawAreas() {
 
     ctx.fill();
     ctx.closePath();
+}
+
+export function drawPoints(r) {
+    const points = pointStorage.getAllPoints();
+
+    for (let i = 0; i < points.length; i++) {
+        drawPoint(points[i].x, points[i].y, r);
+    }
 }
 
 export function drawPoint(x, y, r) {
