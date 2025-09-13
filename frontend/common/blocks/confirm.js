@@ -13,7 +13,7 @@ const btn = document.getElementById("confirm-button");
 
 btn.addEventListener("click", validate);
 
-function validate() {
+async function validate() {
     let x = getChosenX();
 
     if (x === 'DEFAULT_X') {
@@ -22,40 +22,59 @@ function validate() {
     }
 
     let y = validateNumber(document.getElementById("y-choice-input").value, Y_LEFT_BORDER, Y_RIGHT_BORDER);
-
     switch (y) {
         case BLANK_IS_EMPTY_CODE :
             toast("Поля ввода параметра Y является пустым");
             return;
-
         case IS_NOT_A_NUMBER_CODE :
             toast("Параметр Y не является числом");
             return;
-
         case NUMBER_IS_OUT_OF_RANGE_CODE :
             toast(`Параметр Y выходит за границы (${Y_LEFT_BORDER}...${Y_RIGHT_BORDER})`);
             return;
     }
 
     let r = validateNumber(document.getElementById("r-choice-input").value, R_LEFT_BORDER, R_RIGHT_BORDER);
-
     switch (r) {
         case BLANK_IS_EMPTY_CODE :
             toast("Поля ввода параметра R является пустым");
             return;
-
         case IS_NOT_A_NUMBER_CODE :
             toast("Параметр R не является числом");
             return;
-
         case NUMBER_IS_OUT_OF_RANGE_CODE :
             toast(`Параметр R выходит за границы (${R_LEFT_BORDER}...${R_RIGHT_BORDER})`);
             return;
     }
 
     pointStorage.addPoint(x, y);
-
     drawPoint(x, y, r);
+
+    // Отправляем на бэкенд
+    const result = await sendPoint(x, y, r);
+    if (result) {
+        toast(`Сервер ответил: ${JSON.stringify(result)}`);
+    }
+}
+
+async function sendPoint(x, y, r) {
+    fetch('/fcgi-bin/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ x: x, y: y, r: r })
+    })
+
+        .then(response => response.json())
+        .then(result => {
+            if (result.status === true) {
+                alert("Числа равны");
+            } else {
+                alert("Числа неравны");
+            }
+        })
+        .catch(error => {
+            alert(error);
+        });
 }
 
 function getChosenX() {
