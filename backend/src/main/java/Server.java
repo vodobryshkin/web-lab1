@@ -6,8 +6,7 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-//TODO переделать бэкенд
-public class Main {
+public class Server {
     private static final Gson gson = new Gson();
 
     public static void main(String[] args) throws IOException {
@@ -32,7 +31,6 @@ public class Main {
             var httpResponse = """
             Content-Type: application/json
             Content-Length: %d
-
             %s
             """.formatted(content.getBytes(StandardCharsets.UTF_8).length, content);
 
