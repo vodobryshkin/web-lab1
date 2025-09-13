@@ -1,6 +1,6 @@
 import enteties.request.records.ValidationRequest;
 import org.junit.jupiter.api.Test;
-import validation.ValidationManager;
+import validation.managers.ValidationManager;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -24,7 +24,7 @@ public class ValidationManagerTest {
      * Все неправильно.
      */
     @Test
-    void testChainAllInCorrect() {
+    void testChainAllIncorrect() {
         ValidationManager validationManager = new ValidationManager();
         double x = -10, y = -10, r = -10;
 
@@ -36,7 +36,7 @@ public class ValidationManagerTest {
      * X неправильный.
      */
     @Test
-    void testChainXInCorrect() {
+    void testChainXIncorrect() {
         ValidationManager validationManager = new ValidationManager();
         double x = -10, y = 0, r = 2;
 
@@ -48,7 +48,7 @@ public class ValidationManagerTest {
      * Y неправильный.
      */
     @Test
-    void testChainYInCorrect() {
+    void testChainYIncorrect() {
         ValidationManager validationManager = new ValidationManager();
         double x = 1, y = 4, r = 2;
 
@@ -60,7 +60,7 @@ public class ValidationManagerTest {
      * R неправильный.
      */
     @Test
-    void testChainRInCorrect() {
+    void testChainRIncorrect() {
         ValidationManager validationManager = new ValidationManager();
         double x = 2, y = 0, r = 1;
 

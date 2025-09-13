@@ -1,4 +1,4 @@
-package validation;
+package validation.managers;
 
 import enteties.request.records.ValidationRequest;
 import lombok.Getter;
