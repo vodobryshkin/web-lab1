@@ -2,7 +2,7 @@ import com.google.gson.JsonSyntaxException;
 import enteties.request.records.ValidationRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import parser.implementations.JsonParser;
+import codec.implementations.json.JsonParser;
 
 import static org.junit.jupiter.api.Assertions.*;
 

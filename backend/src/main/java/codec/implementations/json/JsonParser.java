@@ -1,9 +1,9 @@
-package parser.implementations;
+package codec.implementations.json;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import enteties.request.records.ValidationRequest;
-import parser.interfaces.Parser;
+import codec.interfaces.Parser;
 
 /**
  * Класс для парсинга JSON.

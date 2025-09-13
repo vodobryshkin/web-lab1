@@ -1,4 +1,4 @@
-package parser.interfaces;
+package codec.interfaces;
 
 import enteties.request.records.ValidationRequest;
 
