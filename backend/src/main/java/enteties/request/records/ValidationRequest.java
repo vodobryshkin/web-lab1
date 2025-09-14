@@ -2,6 +2,8 @@ package enteties.request.records;
 
 import enteties.request.interfaces.Request;
 
+import java.math.BigDecimal;
+
 /**
  * Класс с данными для отправки на валидацию.
  * Получается в результате обработки поступивших данных парсером.
@@ -10,4 +12,4 @@ import enteties.request.interfaces.Request;
  * @param y потенциальная координата по оси y.
  * @param r потенциальный радиус на координатной плоскости.
  */
-public record ValidationRequest(Double x, Double y, Double r) implements Request {}
+public record ValidationRequest(BigDecimal x, BigDecimal y, BigDecimal r) implements Request {}

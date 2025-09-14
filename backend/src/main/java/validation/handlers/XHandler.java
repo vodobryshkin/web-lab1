@@ -3,6 +3,8 @@ package validation.handlers;
 import enteties.request.records.ValidationRequest;
 import validation.abstractions.BaseHandler;
 
+import java.math.BigDecimal;
+
 /**
  * Класс для обработки валидатором значения поступившего X.
  */
@@ -21,7 +23,10 @@ public class XHandler extends BaseHandler {
      */
     @Override
     public boolean handle(ValidationRequest request) {
-        if (request.x() >= -5 && request.x() <= 3) {
+        BigDecimal x = request.x();
+
+        if (x.compareTo(BigDecimal.valueOf(-5)) >= 0
+                && x.compareTo(BigDecimal.valueOf(3)) <= 0) {
             return handleNext(request);
         }
 

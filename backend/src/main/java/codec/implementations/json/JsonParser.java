@@ -5,6 +5,8 @@ import com.google.gson.JsonObject;
 import enteties.request.records.ValidationRequest;
 import codec.interfaces.Parser;
 
+import java.math.BigDecimal;
+
 /**
  * Класс для парсинга JSON.
  */
@@ -22,9 +24,9 @@ public class JsonParser implements Parser {
 
         JsonObject obj = gson.fromJson(data, JsonObject.class);
 
-        Double x = obj.get("x").getAsDouble();
-        Double y = obj.get("y").getAsDouble();
-        Double r = obj.get("r").getAsDouble();
+        BigDecimal x = obj.get("x").getAsBigDecimal();
+        BigDecimal y = obj.get("y").getAsBigDecimal();
+        BigDecimal r = obj.get("r").getAsBigDecimal();
 
         return new ValidationRequest(x, y, r);
     }

@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import codec.implementations.json.JsonParser;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -14,7 +16,7 @@ class JsonParserTest {
 
     @Test
     @DisplayName("Успешный парсинг корректного JSON")
-    void parse_validJson_returnsValidationRequest() {
+    void parseValidJsonReturnsValidationRequest() {
         String json = """
                 {"x": 1.5, "y": -2.25, "r": 3.0}
                 """;
@@ -22,15 +24,15 @@ class JsonParserTest {
         ValidationRequest result = parser.parse(json);
 
         assertAll(
-                () -> assertEquals(1.5, result.x(), 1e-9),
-                () -> assertEquals(-2.25, result.y(), 1e-9),
-                () -> assertEquals(3.0, result.r(), 1e-9)
+                () -> assertEquals(new BigDecimal("1.5"), result.x()),
+                () -> assertEquals(new BigDecimal("-2.25"), result.y()),
+                () -> assertEquals(new BigDecimal("3.0"), result.r())
         );
     }
 
     @Test
-    @DisplayName("Целочисленные значения парсятся как Double")
-    void parse_integerValues_parsedAsDoubles() {
+    @DisplayName("Целочисленные значения парсятся как BigDecimal")
+    void parseIntegerValuesParsedAsBigDecimal() {
         String json = """
                 {"x": 1, "y": 0, "r": 5}
                 """;
@@ -38,15 +40,15 @@ class JsonParserTest {
         ValidationRequest result = parser.parse(json);
 
         assertAll(
-                () -> assertEquals(1.0, result.x(), 1e-9),
-                () -> assertEquals(0.0, result.y(), 1e-9),
-                () -> assertEquals(5.0, result.r(), 1e-9)
+                () -> assertEquals(new BigDecimal("1"), result.x()),
+                () -> assertEquals(new BigDecimal("0"), result.y()),
+                () -> assertEquals(new BigDecimal("5"), result.r())
         );
     }
 
     @Test
     @DisplayName("Числа в виде строк тоже поддерживаются GSON")
-    void parse_stringNumbers_parsedAsDoubles() {
+    void parseStringNumbersParsedAsBigDecimal() {
         String json = """
                 {"x": "2.75", "y": "-3.5", "r": "1.25"}
                 """;
@@ -54,15 +56,15 @@ class JsonParserTest {
         ValidationRequest result = parser.parse(json);
 
         assertAll(
-                () -> assertEquals(2.75, result.x(), 1e-9),
-                () -> assertEquals(-3.5, result.y(), 1e-9),
-                () -> assertEquals(1.25, result.r(), 1e-9)
+                () -> assertEquals(new BigDecimal("2.75"), result.x()),
+                () -> assertEquals(new BigDecimal("-3.5"), result.y()),
+                () -> assertEquals(new BigDecimal("1.25"), result.r())
         );
     }
 
     @Test
     @DisplayName("Отсутствующее поле приводит к NullPointerException (obj.get(..) == null)")
-    void parse_missingField_throwsNullPointerException() {
+    void parseMissingFieldThrowsNullPointerException() {
         String json = """
                 {"x": 1.0, "y": 2.0}
                 """;
@@ -71,7 +73,7 @@ class JsonParserTest {
 
     @Test
     @DisplayName("Нечисловое значение приводит к NumberFormatException")
-    void parse_nonNumeric_throwsNumberFormatException() {
+    void parseNonNumericThrowsNumberFormatException() {
         String json = """
                 {"x": "not-a-number", "y": 1.0, "r": 2.0}
                 """;
@@ -80,14 +82,14 @@ class JsonParserTest {
 
     @Test
     @DisplayName("Некорректный JSON приводит к JsonSyntaxException")
-    void parse_invalidJson_throwsJsonSyntaxException() {
+    void parseInvalidJsonThrowsJsonSyntaxException() {
         String json = "{ x: 1.0, y: 2.0, r: 3.0 ";
         assertThrows(JsonSyntaxException.class, () -> parser.parse(json));
     }
 
     @Test
     @DisplayName("null-строка приводит к NullPointerException (Gson вернёт null-объект)")
-    void parse_nullInput_throwsNullPointerException() {
+    void parseNullInputThrowsNullPointerException() {
         assertThrows(NullPointerException.class, () -> parser.parse(null));
     }
 }

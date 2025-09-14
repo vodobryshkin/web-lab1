@@ -1,5 +1,9 @@
 package enteties.request.records;
 
+import enteties.request.interfaces.Request;
+
+import java.math.BigDecimal;
+
 /**
  * Класс с данными для отправки на десериализацию в JSON.
  * Получается в результате обработки поступивших данных бизнес-логикой.
@@ -9,4 +13,4 @@ package enteties.request.records;
  * @param r радиус на координатной плоскости.
  * @param status результат обработки бизнес-логикой.
  */
-public record DecodeRequest(double x, double y, double r, boolean status) {}
+public record DecodeRequest(BigDecimal x, BigDecimal y, BigDecimal r, boolean status) implements Request {}
