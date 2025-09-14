@@ -1,5 +1,5 @@
-import codec.implementations.json.JsonDecoder;
-import enteties.request.records.DecodeRequest;
+import codec.implementations.json.coordinates.JsonCoordinatesDecoder;
+import entities.request.implementations.messages.DecodeRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -8,9 +8,9 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class JsonDecoderTest {
+class JsonCoordinatesDecoderTest {
 
-    private final JsonDecoder decoder = new JsonDecoder();
+    private final JsonCoordinatesDecoder decoder = new JsonCoordinatesDecoder();
 
     @Test
     @DisplayName("Тест с положительными")

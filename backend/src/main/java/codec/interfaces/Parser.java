@@ -1,16 +1,18 @@
 package codec.interfaces;
 
-import enteties.request.records.ValidationRequest;
+import entities.request.interfaces.Request;
+
+import java.io.IOException;
 
 /**
  * Интерфейс для определения функциональности конкретных парсеров.
  */
 public interface Parser {
     /**
-     * Функция дря парсинга переданных данных.
+     * Метод для парсинга переданных данных.
      *
      * @param data переданные данные для парсинга.
-     * @return сформированный после парсинга запрос на валидацию.
+     * @return сформированный после парсинга запрос.
      */
-    ValidationRequest parse(String data);
+    Request parse(String data) throws IOException;
 }

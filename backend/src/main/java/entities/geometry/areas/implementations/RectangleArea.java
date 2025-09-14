@@ -1,9 +1,10 @@
-package logic.implementations;
+package entities.geometry.areas.implementations;
 
-import enteties.model.Point;
-import logic.interfaces.Area;
+import entities.geometry.model.Point;
+import entities.geometry.areas.interfaces.Area;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Класс, реализующий прямоугольную область.
@@ -44,5 +45,15 @@ public class RectangleArea implements Area {
 
         return (x0.compareTo(x) >= 0 && x0.compareTo(x.add(width)) <= 0 &&
                 y0.compareTo(y) >= 0 && y0.compareTo(y.add(height)) <= 0);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof RectangleArea rectangleArea) {
+            return Objects.equals(leftLowerPoint, rectangleArea.leftLowerPoint) &&
+                    Objects.equals(height, rectangleArea.height) &&
+                    Objects.equals(width, rectangleArea.width);
+        }
+        return false;
     }
 }

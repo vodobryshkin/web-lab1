@@ -1,17 +1,17 @@
-package codec.implementations.json;
+package codec.implementations.json.coordinates;
 
 import codec.interfaces.Decoder;
-import enteties.request.records.DecodeRequest;
+import entities.request.implementations.messages.DecodeRequest;
 
 import java.time.LocalDate;
 
 /**
  * Класс для перекодировки из запроса на десериализацию в JSON.
  */
-public class JsonDecoder implements Decoder {
+public class JsonCoordinatesDecoder implements Decoder {
 
     /**
-     * Функция дря сериализации в JSON переданных данных.
+     * Метод для сериализации в JSON переданных данных.
      *
      * @param data переданные данные для сериализации в JSON.
      * @return сформированный после бизнес-логики запрос на сериализацию в JSON.

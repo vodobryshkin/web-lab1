@@ -1,6 +1,6 @@
 package validation.abstractions;
 
-import enteties.request.records.ValidationRequest;
+import entities.request.implementations.messages.ValidationRequest;
 
 /**
  * Интерфейс для определения функциональности конкретных обработчиков.

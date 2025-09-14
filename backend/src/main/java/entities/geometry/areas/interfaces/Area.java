@@ -1,7 +1,7 @@
-package logic.interfaces;
+package entities.geometry.areas.interfaces;
 
 
-import enteties.model.Point;
+import entities.geometry.model.Point;
 
 /**
  * Интерфейс для определения функциональности конкретных областей на координатной плоскости.

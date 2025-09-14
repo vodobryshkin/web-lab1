@@ -1,4 +1,4 @@
-package enteties.request.interfaces;
+package entities.request.interfaces;
 
 /**
  * Интерфейс для определения запросов.

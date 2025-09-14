@@ -1,6 +1,6 @@
 package validation.handlers;
 
-import enteties.request.records.ValidationRequest;
+import entities.request.implementations.messages.ValidationRequest;
 import validation.abstractions.BaseHandler;
 
 import java.math.BigDecimal;

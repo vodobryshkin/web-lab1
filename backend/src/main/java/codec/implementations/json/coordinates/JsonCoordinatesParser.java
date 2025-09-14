@@ -1,8 +1,8 @@
-package codec.implementations.json;
+package codec.implementations.json.coordinates;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import enteties.request.records.ValidationRequest;
+import entities.request.implementations.messages.ValidationRequest;
 import codec.interfaces.Parser;
 
 import java.math.BigDecimal;
@@ -10,9 +10,9 @@ import java.math.BigDecimal;
 /**
  * Класс для парсинга JSON.
  */
-public class JsonParser implements Parser {
+public class JsonCoordinatesParser implements Parser {
     /**
-     * Функция для парсинга переданных данных в формате JSON.
+     * Метод для парсинга переданных данных в формате JSON.
      * Для парсинга используется библиотека GSON.
      *
      * @param data переданные данные для парсинга.

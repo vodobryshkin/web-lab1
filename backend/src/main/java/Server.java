@@ -25,7 +25,10 @@ public class Server {
 
             String content = """
                     {
-                        "status": %s
+                        "x": %s,
+                        "y": %s,
+                        "r": %s,
+                        "status": %s,
                     }""".formatted(status ? "true" : "false");
 
             var httpResponse = """

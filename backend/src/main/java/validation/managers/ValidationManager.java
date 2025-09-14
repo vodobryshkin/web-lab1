@@ -1,6 +1,6 @@
 package validation.managers;
 
-import enteties.request.records.ValidationRequest;
+import entities.request.implementations.messages.ValidationRequest;
 import lombok.Getter;
 import lombok.Setter;
 import validation.abstractions.Handler;

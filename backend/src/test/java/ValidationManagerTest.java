@@ -1,4 +1,4 @@
-import enteties.request.records.ValidationRequest;
+import entities.request.implementations.messages.ValidationRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import validation.managers.ValidationManager;

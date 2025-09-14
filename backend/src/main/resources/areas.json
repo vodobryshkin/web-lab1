@@ -1,0 +1,28 @@
+{
+  "areas": [
+    {
+      "type": "rectangle",
+      "x": 0,
+      "y": 0,
+      "widthK": 0.5,
+      "heightK": 1
+    },
+    {
+      "type": "triangle",
+      "xA": 0,
+      "yA": 0,
+      "xBK": 1,
+      "yBK": 0,
+      "xCK": 0,
+      "yCK": -1
+    },
+    {
+      "type": "circle",
+      "xC": 0,
+      "yC": 0,
+      "radiusK": 0.5,
+      "startAngleK": 1,
+      "endAngleK": 1.5
+    }
+  ]
+}

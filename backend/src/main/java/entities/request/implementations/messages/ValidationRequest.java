@@ -1,6 +1,6 @@
-package enteties.request.records;
+package entities.request.implementations.messages;
 
-import enteties.request.interfaces.Request;
+import entities.request.interfaces.Request;
 
 import java.math.BigDecimal;
 

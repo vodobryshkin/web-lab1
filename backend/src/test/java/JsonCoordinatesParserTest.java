@@ -1,8 +1,8 @@
 import com.google.gson.JsonSyntaxException;
-import enteties.request.records.ValidationRequest;
+import entities.request.implementations.messages.ValidationRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import codec.implementations.json.JsonParser;
+import codec.implementations.json.coordinates.JsonCoordinatesParser;
 
 import java.math.BigDecimal;
 
@@ -11,8 +11,8 @@ import static org.junit.jupiter.api.Assertions.*;
 /**
  * Класс для тестирования парсера JSON.
  */
-class JsonParserTest {
-    private final JsonParser parser = new JsonParser();
+class JsonCoordinatesParserTest {
+    private final JsonCoordinatesParser parser = new JsonCoordinatesParser();
 
     @Test
     @DisplayName("Успешный парсинг корректного JSON")

@@ -1,8 +1,9 @@
-package enteties.model;
+package entities.geometry.model;
 
 import lombok.Getter;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 /**
  * Класс-абстракция над точкой на координатной плоскости.
@@ -27,5 +28,13 @@ public class Point {
     @Override
     public String toString() {
         return String.format("Point(%f, %f)", x, y);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Point point1) {
+            return this.x.equals(point1.x) && Objects.equals(y, point1.y);
+        }
+        return false;
     }
 }

@@ -1,5 +1,5 @@
-import enteties.model.Point;
-import logic.implementations.RectangleArea;
+import entities.geometry.model.Point;
+import entities.geometry.areas.implementations.RectangleArea;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
