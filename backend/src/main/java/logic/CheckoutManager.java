@@ -1,9 +1,12 @@
 package logic;
 
+import codec.implementations.json.config.JsonAreasConfigParser;
+import entities.geometry.areas.factory.AreaFactory;
 import entities.geometry.areas.interfaces.Area;
+import entities.request.implementations.messages.AreasRequest;
 import entities.request.implementations.messages.CheckoutRequest;
 
-import java.util.ArrayList;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,18 +14,31 @@ import java.util.List;
  * Проверяет вхождение точки в области.
  */
 public class CheckoutManager {
-    private final AreaContext areaContext = new AreaContext();
-    private final List<Area> areaList = new ArrayList<>();
+    private final AreaContext areaContext;
+    private final AreasRequest areasRequest;
+
+    /**
+     * Конструктор класса CheckoutManager.
+     * Данные обо всех областях сразу собираются при создании объекта, чтобы избежать накладок с постоянным обращением к
+     * памяти.
+     */
+    public CheckoutManager(String configName) throws IOException {
+        areaContext = new AreaContext();
+        areasRequest = new JsonAreasConfigParser().parse(configName);
+    }
 
     /**
      * Метод для запуска проверок на запрос
      * Каждый раз устанавливаем область в AreaContext и он её проверяет.
      * Если точка лежит хоть в одной из областей, то status=true и нет смысла смотреть вхождение дальше.
+     * Сначала, используя фабрику областей, формируется список всех областей. Затем в цикле каждый раз в areaContext
+     * устанавливается новая область и происходит проверка вхождения.
      *
      * @param request запрос для проверки.
      * @return информацию входит ли точка в область (true) или нет (false).
      */
     public boolean checkRequest(CheckoutRequest request) {
+        List<Area> areaList = new AreaFactory().createAreas(areasRequest, request.r());
         boolean status = false;
 
         for (Area area: areaList) {
@@ -35,9 +51,5 @@ public class CheckoutManager {
         }
 
         return status;
-    }
-
-    private void addArea(Area area) {
-        areaList.add(area);
     }
 }
