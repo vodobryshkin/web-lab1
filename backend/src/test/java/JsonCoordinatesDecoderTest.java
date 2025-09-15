@@ -28,9 +28,9 @@ class JsonCoordinatesDecoderTest {
                     "y": 2.5,
                     "r": 3.5,
                     "status": true,
-                    "time": %s
+                    "time": "%s"
                 }
-                """.formatted(LocalDate.now());
+                """.formatted(LocalDate.now().toString());
 
         assertEquals(expected, json);
     }
@@ -45,11 +45,13 @@ class JsonCoordinatesDecoderTest {
         DecodeRequest request = new DecodeRequest(x, y, r, false);
         String json = decoder.decode(request);
 
+        System.out.println(json);
+
         assertTrue(json.contains("\"x\": -10"));
         assertTrue(json.contains("\"y\": -20.5"));
         assertTrue(json.contains("\"r\": -3"));
         assertTrue(json.contains("\"status\": false"));
-        assertTrue(json.contains("\"time\": " + LocalDate.now()));
+        assertTrue(json.contains("\"time\": \"" + LocalDate.now() + "\""));
     }
 
     @Test

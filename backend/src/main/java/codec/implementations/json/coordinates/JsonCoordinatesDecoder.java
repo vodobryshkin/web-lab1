@@ -24,8 +24,8 @@ public class JsonCoordinatesDecoder implements Decoder {
                     "y": %s,
                     "r": %s,
                     "status": %s,
-                    "time": %s
+                    "time": "%s"
                 }
-                """.formatted(data.x(), data.y(), data.r(), data.status(), LocalDate.now());
+                """.formatted(data.x(), data.y(), data.r(), data.status(), LocalDate.now().toString());
     }
 }

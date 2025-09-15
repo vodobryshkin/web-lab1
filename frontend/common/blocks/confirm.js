@@ -47,10 +47,11 @@ async function validate() {
             return;
     }
 
+    console.log("123")
+
     pointStorage.addPoint(x, y);
     drawPoint(x, y, r);
 
-    // Отправляем на бэкенд
     const result = await sendPoint(x, y, r);
     if (result) {
         toast(`Сервер ответил: ${JSON.stringify(result)}`);
@@ -66,11 +67,7 @@ async function sendPoint(x, y, r) {
 
         .then(response => response.json())
         .then(result => {
-            if (result.status === true) {
-                alert("Числа равны");
-            } else {
-                alert("Числа неравны");
-            }
+            console.log(result.x, result.y, result.r, result.status, result.time);
         })
         .catch(error => {
             alert(error);
