@@ -7,8 +7,6 @@ import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import entities.request.interfaces.Request;
 
-import java.math.BigDecimal;
-
 /**
  * Класс для парсинга JSON.
  */
@@ -27,9 +25,9 @@ public class JsonCoordinatesParser implements RequestParser {
         if (request instanceof ParseRequestBodyRequest parseRequestBodyRequest) {
             JsonObject obj = gson.fromJson(parseRequestBodyRequest.requestBody(), JsonObject.class);
 
-            BigDecimal x = obj.get("x").getAsBigDecimal();
-            BigDecimal y = obj.get("y").getAsBigDecimal();
-            BigDecimal r = obj.get("r").getAsBigDecimal();
+            String x = obj.get("x").getAsString();
+            String y = obj.get("y").getAsString();
+            String r = obj.get("r").getAsString();
 
             return new ValidationRequest(x, y, r);
         }

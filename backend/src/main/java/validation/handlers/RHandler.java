@@ -23,13 +23,17 @@ public class RHandler extends BaseHandler {
      */
     @Override
     public boolean handle(ValidationRequest request) {
-        BigDecimal r = request.r();
+        try {
+            BigDecimal r = new BigDecimal(request.r());
 
-        if (r.compareTo(BigDecimal.valueOf(2)) >= 0
-                && r.compareTo(BigDecimal.valueOf(5)) <= 0) {
-            return handleNext(request);
+            if (r.compareTo(BigDecimal.valueOf(2)) >= 0
+                    && r.compareTo(BigDecimal.valueOf(5)) <= 0) {
+                return handleNext(request);
+            }
+
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
         }
-
-        return false;
     }
 }

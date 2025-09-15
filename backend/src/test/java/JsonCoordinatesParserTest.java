@@ -5,8 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import codec.implementations.json.coordinates.JsonCoordinatesParser;
 
-import java.math.BigDecimal;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
@@ -27,15 +25,15 @@ class JsonCoordinatesParserTest {
         ValidationRequest result = parser.parse(json);
 
         assertAll(
-                () -> assertEquals(new BigDecimal("1.5"), result.x()),
-                () -> assertEquals(new BigDecimal("-2.25"), result.y()),
-                () -> assertEquals(new BigDecimal("3.0"), result.r())
+                () -> assertEquals("1.5", result.x()),
+                () -> assertEquals("-2.25", result.y()),
+                () -> assertEquals("3.0", result.r())
         );
     }
 
     @Test
-    @DisplayName("Целочисленные значения парсятся как BigDecimal")
-    void parseIntegerValuesParsedAsBigDecimal() {
+    @DisplayName("Целочисленные значения парсятся как String")
+    void parseIntegerValuesParsedAsString() {
         String data = """
                 {"x": 1, "y": 0, "r": 5}
                 """;
@@ -45,15 +43,15 @@ class JsonCoordinatesParserTest {
         ValidationRequest result = parser.parse(json);
 
         assertAll(
-                () -> assertEquals(new BigDecimal("1"), result.x()),
-                () -> assertEquals(new BigDecimal("0"), result.y()),
-                () -> assertEquals(new BigDecimal("5"), result.r())
+                () -> assertEquals("1", result.x()),
+                () -> assertEquals("0", result.y()),
+                () -> assertEquals("5", result.r())
         );
     }
 
     @Test
     @DisplayName("Числа в виде строк тоже поддерживаются GSON")
-    void parseStringNumbersParsedAsBigDecimal() {
+    void parseStringNumbersParsedAsString() {
         String data = """
                 {"x": "2.75", "y": "-3.5", "r": "1.25"}
                 """;
@@ -63,9 +61,9 @@ class JsonCoordinatesParserTest {
         ValidationRequest result = parser.parse(json);
 
         assertAll(
-                () -> assertEquals(new BigDecimal("2.75"), result.x()),
-                () -> assertEquals(new BigDecimal("-3.5"), result.y()),
-                () -> assertEquals(new BigDecimal("1.25"), result.r())
+                () -> assertEquals("2.75", result.x()),
+                () -> assertEquals("-3.5", result.y()),
+                () -> assertEquals("1.25", result.r())
         );
     }
 
@@ -79,18 +77,6 @@ class JsonCoordinatesParserTest {
         ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
 
         assertThrows(NullPointerException.class, () -> parser.parse(json));
-    }
-
-    @Test
-    @DisplayName("Нечисловое значение приводит к NumberFormatException")
-    void parseNonNumericThrowsNumberFormatException() {
-        String data = """
-                {"x": "not-a-number", "y": 1.0, "r": 2.0}
-                """;
-
-        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
-
-        assertThrows(NumberFormatException.class, () -> parser.parse(json));
     }
 
     @Test

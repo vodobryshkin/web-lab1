@@ -2,8 +2,6 @@ package entities.request.implementations.messages;
 
 import entities.request.interfaces.Request;
 
-import java.math.BigDecimal;
-
 /**
  * Класс с данными для отправки на валидацию.
  * Получается в результате обработки поступивших данных парсером.
@@ -12,4 +10,4 @@ import java.math.BigDecimal;
  * @param y потенциальная координата по оси y.
  * @param r потенциальный радиус на координатной плоскости.
  */
-public record ValidationRequest(BigDecimal x, BigDecimal y, BigDecimal r) implements Request {}
+public record ValidationRequest(String x, String y, String r) implements Request {}

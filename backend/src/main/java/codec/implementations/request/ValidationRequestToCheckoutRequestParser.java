@@ -12,8 +12,8 @@ import java.math.BigDecimal;
  */
 public class ValidationRequestToCheckoutRequestParser {
     public CheckoutRequest parse(ValidationRequest validationRequest) {
-        Point p = new Point(validationRequest.x(), validationRequest.y());
-        BigDecimal r = validationRequest.r();
+        Point p = new Point(new BigDecimal(validationRequest.x()), new BigDecimal(validationRequest.y()));
+        BigDecimal r = new BigDecimal(validationRequest.r());
         return new CheckoutRequest(p, r);
     }
 }

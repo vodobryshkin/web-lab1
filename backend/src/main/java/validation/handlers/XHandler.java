@@ -23,13 +23,17 @@ public class XHandler extends BaseHandler {
      */
     @Override
     public boolean handle(ValidationRequest request) {
-        BigDecimal x = request.x();
+        try {
+            BigDecimal x = new BigDecimal(request.x());
 
-        if (x.compareTo(BigDecimal.valueOf(-5)) >= 0
-                && x.compareTo(BigDecimal.valueOf(3)) <= 0) {
-            return handleNext(request);
+            if (x.compareTo(BigDecimal.valueOf(-5)) >= 0
+                    && x.compareTo(BigDecimal.valueOf(3)) <= 0) {
+                return handleNext(request);
+            }
+
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
         }
-
-        return false;
     }
 }

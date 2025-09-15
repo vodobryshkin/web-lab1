@@ -23,13 +23,18 @@ public class YHandler extends BaseHandler {
      */
     @Override
     public boolean handle(ValidationRequest request) {
-        BigDecimal y = request.y();
+        try {
+            BigDecimal y = new BigDecimal(request.y());
 
-        if (y.compareTo(BigDecimal.valueOf(-3)) >= 0
-                && y.compareTo(BigDecimal.valueOf(3)) <= 0) {
-            return handleNext(request);
+            if (y.compareTo(BigDecimal.valueOf(-3)) >= 0
+                    && y.compareTo(BigDecimal.valueOf(3)) <= 0) {
+                return handleNext(request);
+            }
+
+            return false;
+        } catch (NumberFormatException e) {
+            return false;
         }
 
-        return false;
     }
 }
