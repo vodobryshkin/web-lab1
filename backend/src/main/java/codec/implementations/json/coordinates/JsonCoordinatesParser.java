@@ -6,10 +6,12 @@ import com.google.gson.JsonObject;
 import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import entities.request.interfaces.Request;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Класс для парсинга JSON.
  */
+@Slf4j
 public class JsonCoordinatesParser implements RequestParser {
     /**
      * Метод для парсинга переданных данных в формате JSON.
@@ -25,11 +27,18 @@ public class JsonCoordinatesParser implements RequestParser {
         if (request instanceof ParseRequestBodyRequest parseRequestBodyRequest) {
             JsonObject obj = gson.fromJson(parseRequestBodyRequest.requestBody(), JsonObject.class);
 
-            String x = obj.get("x").getAsString();
-            String y = obj.get("y").getAsString();
-            String r = obj.get("r").getAsString();
+            try {
+                String x = obj.get("x").getAsString();
+                String y = obj.get("y").getAsString();
+                String r = obj.get("r").getAsString();
 
-            return new ValidationRequest(x, y, r);
+                log.info("Created validation request with fields: x={}, y={}, r={}.", x, y, r);
+
+                return new ValidationRequest(x, y, r);
+            } catch (NullPointerException | IllegalStateException | UnsupportedOperationException e) {
+                log.error("Could not parse a JSON: {}.", obj.getAsString());
+            }
+
         }
 
         return null;

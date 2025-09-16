@@ -10,6 +10,7 @@ import entities.request.implementations.messages.DecodeRequest;
 import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import logic.CheckoutManager;
+import lombok.extern.slf4j.Slf4j;
 import network.managers.FcgiRequestBodyReader;
 import network.managers.HttpResponseSender;
 import validation.managers.ValidationManager;
@@ -21,6 +22,7 @@ import java.io.IOException;
  * Внутри него, помимо приёма и отправки запросов, так же реализуется поддержка логики, которая происходит между
  * получением запроса на фронтенд и отправлением ответа на фронтенд.
  */
+@Slf4j
 public class Server {
     private final FcgiRequestBodyReader fcgiRequestBodyReader;
     private final JsonCoordinatesParser jsonCoordinatesParser;
@@ -40,6 +42,8 @@ public class Server {
         decodeRequestDecoder = new DecodeRequestDecoder();
         jsonCoordinatesDecoder = new JsonCoordinatesDecoder();
         httpResponseSender = new HttpResponseSender();
+
+        log.info("FCGI server started.");
     }
 
     /**
@@ -51,22 +55,23 @@ public class Server {
      * Результат проверки сохраняется в status, затем преобразуется в запрос на декодирование в json, декодируется
      * и отправляется ответ.
      */
-    public void listenAndServe() throws IOException {
+    public void listenAndServe() {
         FCGIInterface fcgiInterface = new FCGIInterface();
-
         while (fcgiInterface.FCGIaccept() >= 0) {
             ParseRequestBodyRequest request = fcgiRequestBodyReader.readRequestBody();
-
             ValidationRequest validationRequest = jsonCoordinatesParser.parse(request);
 
             if (validationManager.validate(validationRequest)) {
                 CheckoutRequest checkoutRequest = vReqToChReqParser.parse(validationRequest);
+
                 boolean status = checkoutManager.checkRequest(checkoutRequest);
 
                 DecodeRequest decodeRequest = decodeRequestDecoder.decode(checkoutRequest, status);
                 String content = jsonCoordinatesDecoder.decode(decodeRequest);
 
                 httpResponseSender.sendHttpResponse(content);
+            } else {
+                log.info("Validation request failed.");
             }
         }
     }

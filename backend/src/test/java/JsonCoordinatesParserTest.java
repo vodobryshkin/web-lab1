@@ -76,7 +76,7 @@ class JsonCoordinatesParserTest {
 
         ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
 
-        assertThrows(NullPointerException.class, () -> parser.parse(json));
+        assertThrows(UnsupportedOperationException.class, () -> parser.parse(json));
     }
 
     @Test
