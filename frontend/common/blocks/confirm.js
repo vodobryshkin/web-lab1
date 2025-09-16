@@ -47,32 +47,55 @@ async function validate() {
             return;
     }
 
-    console.log("123")
+    const data = await sendPoint(x, y, r);
 
-    pointStorage.addPoint(x, y);
-    drawPoint(x, y, r);
-
-    const result = await sendPoint(x, y, r);
-    if (result) {
-        toast(`Сервер ответил: ${JSON.stringify(result)}`);
+    if (data) {
+        addInfoAboutPoint(data.x, data.y, data.r, data.status, data.elapsed);
     }
 }
 
-async function sendPoint(x, y, r) {
-    fetch('/fcgi-bin/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ x: x, y: y, r: r })
-    })
+function addInfoAboutPoint(x, y, r, status, elapsed) {
+    pointStorage.addPoint(x, y);
+    drawPoint(x, y, r);
 
-        .then(response => response.json())
-        .then(result => {
-            console.log(result.x, result.y, result.r, result.status);
-        })
-        .catch(error => {
-            alert(error);
-        });
+    let table = document.getElementById("result-table");
+    let row = table.insertRow(-1);
+
+    const timeString = (new Date).toLocaleTimeString('ru-RU', {
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: false
+    });
+
+    row.insertCell(0).textContent = x;
+    row.insertCell(1).textContent = y;
+    row.insertCell(2).textContent = r;
+    row.insertCell(3).textContent = status ? "Попал" : "Не попал";
+    row.insertCell(4).textContent = timeString;
+    row.insertCell(5).textContent = elapsed + " ms";
 }
+
+async function sendPoint(x, y, r) {
+    const start = performance.now();
+
+    try {
+        const response = await fetch('/fcgi-bin/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ x, y, r })
+        });
+
+        const result = await response.json();
+        const elapsed = performance.now() - start;
+
+        return { ...result, elapsed };
+    } catch (error) {
+        toast(error);
+        return null;
+    }
+}
+
 
 function getChosenX() {
     let resultX = 'DEFAULT_X';
