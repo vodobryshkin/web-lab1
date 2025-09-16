@@ -7,7 +7,7 @@ export function toast(message) {
             <span class="toast-message-txt">${message}</span>
         </div>
         
-        <button class="toast-message__toast-close-btn toast-close-btn">❌</button>`;
+        <button class="toast-message__toast-close-btn toast-close-btn">✖</button>`;
     document.body.appendChild(toast);
 
     const closeBtn = toast.querySelector('.toast-close-btn');
