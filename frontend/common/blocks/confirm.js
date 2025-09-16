@@ -14,12 +14,6 @@ const btn = document.getElementById("confirm-button");
 btn.addEventListener("click", validate);
 
 async function validate() {
-    let x = getChosenX();
-
-    if (x === 'DEFAULT_X') {
-        toast("Параметр X не выбран");
-        return;
-    }
 
     let y = validateNumber(document.getElementById("y-choice-input").value, Y_LEFT_BORDER, Y_RIGHT_BORDER);
     switch (y) {
@@ -35,6 +29,7 @@ async function validate() {
     }
 
     let r = validateNumber(document.getElementById("r-choice-input").value, R_LEFT_BORDER, R_RIGHT_BORDER);
+
     switch (r) {
         case BLANK_IS_EMPTY_CODE :
             toast("Поля ввода параметра R является пустым");
@@ -47,10 +42,19 @@ async function validate() {
             return;
     }
 
-    const data = await sendPoint(x, y, r);
+    let x = getChosenX();
 
-    if (data) {
-        addInfoAboutPoint(data.x, data.y, data.r, data.status, data.elapsed);
+    if (x.length === 0) {
+        toast("Параметр X не выбран");
+    } else {
+        for (let i = 0; i < x.length; i++) {
+            let data = await sendPoint(x[i], y, r);
+
+            if (data) {
+                addInfoAboutPoint(data.x, data.y, data.r, data.status, data.elapsed);
+            }
+        }
+
     }
 }
 
@@ -98,15 +102,14 @@ async function sendPoint(x, y, r) {
 
 
 function getChosenX() {
-    let resultX = 'DEFAULT_X';
+    let resultX = [];
 
     const checkboxListElements = document.getElementsByClassName("checkbox-list-element-input");
     const checkboxListElementsValues = document.getElementsByClassName("checkbox-list-element-text");
 
     for (let i = 0; i < checkboxListElements.length; i++) {
         if (checkboxListElements[i].checked) {
-            resultX = Number(checkboxListElementsValues[i].innerText);
-            break
+            resultX.push(Number(checkboxListElementsValues[i].innerText));
         }
     }
 
