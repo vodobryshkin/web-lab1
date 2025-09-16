@@ -3,8 +3,6 @@ package codec.implementations.json.coordinates;
 import codec.interfaces.Decoder;
 import entities.request.implementations.messages.DecodeRequest;
 
-import java.time.LocalDate;
-
 /**
  * Класс для перекодировки из запроса на десериализацию в JSON.
  */
@@ -23,9 +21,8 @@ public class JsonCoordinatesDecoder implements Decoder {
                     "x": %s,
                     "y": %s,
                     "r": %s,
-                    "status": %s,
-                    "time": "%s"
+                    "status": %s
                 }
-                """.formatted(data.x(), data.y(), data.r(), data.status(), LocalDate.now().toString());
+                """.formatted(data.x(), data.y(), data.r(), data.status());
     }
 }

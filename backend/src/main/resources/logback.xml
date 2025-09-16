@@ -1,5 +1,5 @@
 <configuration><appender name="FILE" class="ch.qos.logback.core.FileAppender">
-        <file>backend/logs/app.log</file>
+        <file>logs/app.log</file>
         <append>true</append>
         <encoder>
             <pattern>[%date] %-5level %logger{36} - %msg%n</pattern>

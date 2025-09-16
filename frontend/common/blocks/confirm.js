@@ -67,7 +67,7 @@ async function sendPoint(x, y, r) {
 
         .then(response => response.json())
         .then(result => {
-            console.log(result.x, result.y, result.r, result.status, result.time);
+            console.log(result.x, result.y, result.r, result.status);
         })
         .catch(error => {
             alert(error);

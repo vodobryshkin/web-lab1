@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,11 +26,10 @@ class JsonCoordinatesDecoderTest {
                     "x": 1.5,
                     "y": 2.5,
                     "r": 3.5,
-                    "status": true,
-                    "time": "%s"
+                    "status": true
                 }
-                """.formatted(LocalDate.now().toString());
-
+                """;
+        System.out.println(json);
         assertEquals(expected, json);
     }
 
@@ -51,7 +49,6 @@ class JsonCoordinatesDecoderTest {
         assertTrue(json.contains("\"y\": -20.5"));
         assertTrue(json.contains("\"r\": -3"));
         assertTrue(json.contains("\"status\": false"));
-        assertTrue(json.contains("\"time\": \"" + LocalDate.now() + "\""));
     }
 
     @Test
