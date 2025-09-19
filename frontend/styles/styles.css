@@ -6,6 +6,7 @@ body {
     font-family: "Nunito", sans-serif;
 
     background-color: #FAFAFA;
+    overflow-x: hidden;
 }
 
 header {
@@ -27,10 +28,13 @@ header {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
 
     color: #212121;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+    min-width: max-content;
+    width: 100%;
 }
 
 .system-menu {
@@ -221,4 +225,23 @@ table td {
 
     background: none;
     border: none;
+}
+
+.table-wrapper {
+    max-width: 100%;
+}
+
+.coordinate-plane__canvas {
+    flex-shrink: 0;
+    width: 600px;
+    height: 600px;
+}
+
+.table__wrapper {
+    flex: 1;
+    min-width: 600px;
+}
+
+.table__wrapper table {
+    width: 100%;
 }

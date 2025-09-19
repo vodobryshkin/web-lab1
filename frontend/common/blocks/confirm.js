@@ -63,7 +63,7 @@ function addInfoAboutPoint(x, y, r, status, elapsed) {
     drawPoint(x, y, r);
 
     let table = document.getElementById("result-table");
-    let row = table.insertRow(-1);
+    let row = table.insertRow(1);
 
     const timeString = (new Date).toLocaleTimeString('ru-RU', {
         hour: '2-digit',

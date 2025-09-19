@@ -6,6 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <!--<link rel="stylesheet" href="styles/styles.css">-->
     <style>
         body {
             margin: 0;
@@ -15,6 +16,7 @@
             font-family: "Nunito", sans-serif;
 
             background-color: #FAFAFA;
+            overflow-x: hidden;
         }
 
         header {
@@ -36,10 +38,13 @@
             display: flex;
             flex-direction: row;
             align-items: flex-start;
-            justify-content: space-between;
+            justify-content: flex-start;
 
             color: #212121;
             text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+
+            min-width: max-content;
+            width: 100%;
         }
 
         .system-menu {
@@ -231,6 +236,25 @@
             background: none;
             border: none;
         }
+
+        .table-wrapper {
+            max-width: 100%;
+        }
+
+        .coordinate-plane__canvas {
+            flex-shrink: 0;
+            width: 600px;
+            height: 600px;
+        }
+
+        .table__wrapper {
+            flex: 1;
+            min-width: 600px;
+        }
+
+        .table__wrapper table {
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -324,16 +348,19 @@
             <canvas class="system-menu__element coordinate-plane__canvas canvas" id="canvas" width="600" height="600"></canvas>
         </div>
     </div>
-    <table id="result-table">
-        <tr>
-            <th>X</th>
-            <th>Y</th>
-            <th>R</th>
-            <th>Попадание</th>
-            <th>Текущее время</th>
-            <th>Время работы скрипта</th>
-        </tr>
-    </table>
+    <div class="table__wrapper">
+        <table id="result-table">
+            <tr>
+                <th>X</th>
+                <th>Y</th>
+                <th>R</th>
+                <th>Попадание</th>
+                <th>Текущее время</th>
+                <th>Время работы скрипта</th>
+            </tr>
+        </table>
+    </div>
+
 </section>
 
 <script type="module" src="common/blocks/canvas.js"></script>
