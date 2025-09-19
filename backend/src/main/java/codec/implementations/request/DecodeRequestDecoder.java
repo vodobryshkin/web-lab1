@@ -23,7 +23,7 @@ public class DecodeRequestDecoder {
         BigDecimal y = checkoutRequest.point().getY();
         BigDecimal r = checkoutRequest.r();
 
-        log.info("Created validation request with fields: x={}, y={}, r={}, status={}.", x, y, r, status);
+        log.info("Created decode request with fields: x={}, y={}, r={}, status={}.", x, y, r, status);
 
         return new DecodeRequest(x, y, r, status);
     }

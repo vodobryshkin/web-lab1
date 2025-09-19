@@ -19,8 +19,8 @@ public class JsonCoordinatesDecoder implements Decoder {
         return """
                 {
                     "x": %s,
-                    "y": %s,
-                    "r": %s,
+                    "y": "%s",
+                    "r": "%s",
                     "status": %s
                 }
                 """.formatted(data.x(), data.y(), data.r(), data.status());

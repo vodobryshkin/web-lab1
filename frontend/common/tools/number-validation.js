@@ -1,3 +1,5 @@
+import Decimal from "../../libs/decimal.js/decimal.mjs";
+
 export const NUMBER_REGEX = /^-?\d*.?\d+$/;
 
 export const IS_NOT_A_NUMBER_CODE = "IS_NOT_A_NUMBER";
@@ -13,9 +15,9 @@ export function validateNumber(number, leftBorder, rightBorder) {
         return IS_NOT_A_NUMBER_CODE;
     }
 
-    let numNumber = Number(number);
+    let numNumber = Decimal(number);
 
-    if (numNumber < leftBorder || numNumber > rightBorder) {
+    if (numNumber.lt(leftBorder) || numNumber.gt(rightBorder)) {
         return NUMBER_IS_OUT_OF_RANGE_CODE;
     }
 

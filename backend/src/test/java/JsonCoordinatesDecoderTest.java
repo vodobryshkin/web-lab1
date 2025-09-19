@@ -24,8 +24,8 @@ class JsonCoordinatesDecoderTest {
         String expected = """
                 {
                     "x": 1.5,
-                    "y": 2.5,
-                    "r": 3.5,
+                    "y": \"2.5\",
+                    "r": \"3.5\",
                     "status": true
                 }
                 """;
@@ -46,8 +46,8 @@ class JsonCoordinatesDecoderTest {
         System.out.println(json);
 
         assertTrue(json.contains("\"x\": -10"));
-        assertTrue(json.contains("\"y\": -20.5"));
-        assertTrue(json.contains("\"r\": -3"));
+        assertTrue(json.contains("\"y\": \"-20.5\""));
+        assertTrue(json.contains("\"r\": \"-3\""));
         assertTrue(json.contains("\"status\": false"));
     }
 
@@ -62,8 +62,8 @@ class JsonCoordinatesDecoderTest {
         String json = decoder.decode(request);
 
         assertTrue(json.contains("\"x\": 0"));
-        assertTrue(json.contains("\"y\": 0"));
-        assertTrue(json.contains("\"r\": 0"));
+        assertTrue(json.contains("\"y\": \"0\""));
+        assertTrue(json.contains("\"r\": \"0\""));
         assertTrue(json.contains("\"status\": false"));
     }
 

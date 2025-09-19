@@ -27,7 +27,7 @@ public class HttpResponseSender {
 
         String httpPayload = headers + body;
 
-        log.info("Sent a response to the client: {}{}", httpResponseCode.getCode(), httpResponseCode.getMeaning());
+        log.info("Sent a response to the client: {}", httpPayload);
         System.out.print(httpPayload);
     }
 

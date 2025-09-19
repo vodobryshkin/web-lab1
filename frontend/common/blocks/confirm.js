@@ -3,11 +3,13 @@ import {drawPoint} from './canvas.js'
 import {pointStorage} from '../tools/storage-work.js'
 import {toast} from "../tools/toast.js";
 
-const Y_LEFT_BORDER = -3;
-const Y_RIGHT_BORDER = 3;
+import Decimal from "../../libs/decimal.js/decimal.mjs";
 
-const R_LEFT_BORDER = 2;
-const R_RIGHT_BORDER = 5;
+const Y_LEFT_BORDER = new Decimal(-3);
+const Y_RIGHT_BORDER = new Decimal(3);
+
+const R_LEFT_BORDER = new Decimal(2);
+const R_RIGHT_BORDER = new Decimal(5);
 
 const btn = document.getElementById("confirm-button");
 
