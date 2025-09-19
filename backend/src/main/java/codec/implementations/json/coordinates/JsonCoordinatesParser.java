@@ -25,9 +25,9 @@ public class JsonCoordinatesParser implements RequestParser {
         Gson gson = new Gson();
 
         if (request instanceof ParseRequestBodyRequest parseRequestBodyRequest) {
-            JsonObject obj = gson.fromJson(parseRequestBodyRequest.requestBody(), JsonObject.class);
-
             try {
+                JsonObject obj = gson.fromJson(parseRequestBodyRequest.requestBody(), JsonObject.class);
+
                 String x = obj.get("x").getAsString();
                 String y = obj.get("y").getAsString();
                 String r = obj.get("r").getAsString();
@@ -35,8 +35,8 @@ public class JsonCoordinatesParser implements RequestParser {
                 log.info("Created validation request with fields: x={}, y={}, r={}.", x, y, r);
 
                 return new ValidationRequest(x, y, r);
-            } catch (NullPointerException | IllegalStateException | UnsupportedOperationException e) {
-                log.error("Could not parse a JSON: {}.", obj.getAsString());
+            } catch (Exception e) {
+                log.error("Could not parse a JSON.");
             }
 
         }

@@ -67,18 +67,6 @@ public class AreaCreatorsTest {
                 new BigDecimal(Math.PI * 1.5)
                 );
 
-        System.out.println("Новая");
-        System.out.println(newArea.getCenterPoint());
-        System.out.println(newArea.getRadius());
-        System.out.println(newArea.getAngleStart());
-        System.out.println(newArea.getAngleEnd());
-
-        System.out.println("Ручная");
-        System.out.println(sectorArea.getCenterPoint());
-        System.out.println(sectorArea.getRadius());
-        System.out.println(sectorArea.getAngleStart());
-        System.out.println(sectorArea.getAngleEnd());
-
 
         assertEquals(newArea, sectorArea);
     }

@@ -9,6 +9,7 @@ import entities.request.implementations.messages.CheckoutRequest;
 import entities.request.implementations.messages.DecodeRequest;
 import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
+import entities.status.HttpResponseCode;
 import logic.CheckoutManager;
 import lombok.extern.slf4j.Slf4j;
 import network.managers.FcgiRequestBodyReader;
@@ -59,20 +60,27 @@ public class Server {
         FCGIInterface fcgiInterface = new FCGIInterface();
         while (fcgiInterface.FCGIaccept() >= 0) {
             ParseRequestBodyRequest request = fcgiRequestBodyReader.readRequestBody();
+
             ValidationRequest validationRequest = jsonCoordinatesParser.parse(request);
 
-            if (validationManager.validate(validationRequest)) {
-                CheckoutRequest checkoutRequest = vReqToChReqParser.parse(validationRequest);
+            if (validationRequest != null) {
+                if (validationManager.validate(validationRequest)) {
+                    CheckoutRequest checkoutRequest = vReqToChReqParser.parse(validationRequest);
 
-                boolean status = checkoutManager.checkRequest(checkoutRequest);
+                    boolean status = checkoutManager.checkRequest(checkoutRequest);
 
-                DecodeRequest decodeRequest = decodeRequestDecoder.decode(checkoutRequest, status);
-                String content = jsonCoordinatesDecoder.decode(decodeRequest);
+                    DecodeRequest decodeRequest = decodeRequestDecoder.decode(checkoutRequest, status);
+                    String content = jsonCoordinatesDecoder.decode(decodeRequest);
 
-                httpResponseSender.sendHttpResponse(content);
+                    httpResponseSender.sendHttpResponse(HttpResponseCode.Ok, content);
+                } else {
+                    httpResponseSender.sendHttpResponse(HttpResponseCode.UnprocessableEntity, "");
+                    log.info("Validation request failed.");
+                }
             } else {
-                log.info("Validation request failed.");
+                httpResponseSender.sendHttpResponse(HttpResponseCode.BadRequest, "");
             }
+
         }
     }
 }

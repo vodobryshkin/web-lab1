@@ -1,4 +1,3 @@
-import com.google.gson.JsonSyntaxException;
 import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import org.junit.jupiter.api.DisplayName;
@@ -65,27 +64,5 @@ class JsonCoordinatesParserTest {
                 () -> assertEquals("-3.5", result.y()),
                 () -> assertEquals("1.25", result.r())
         );
-    }
-
-    @Test
-    @DisplayName("Отсутствующее поле приводит к NullPointerException (obj.get(..) == null)")
-    void parseMissingFieldThrowsNullPointerException() {
-        String data = """
-                {"x": 1.0, "y": 2.0}
-                """;
-
-        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
-
-        assertThrows(UnsupportedOperationException.class, () -> parser.parse(json));
-    }
-
-    @Test
-    @DisplayName("Некорректный JSON приводит к JsonSyntaxException")
-    void parseInvalidJsonThrowsJsonSyntaxException() {
-        String data = "{ x: 1.0, y: 2.0, r: 3.0 ";
-
-        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
-
-        assertThrows(JsonSyntaxException.class, () -> parser.parse(json));
     }
 }

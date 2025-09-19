@@ -1,5 +1,6 @@
 package network.managers;
 
+import entities.status.HttpResponseCode;
 import lombok.extern.slf4j.Slf4j;
 
 import java.nio.charset.StandardCharsets;
@@ -12,18 +13,22 @@ public class HttpResponseSender {
     /**
      * Метод для формирования и отправки http-ответа.
      *
+     * @param httpResponseCode код ответа.
      * @param body тело ответа.
      */
-    public void sendHttpResponse(String body) {
-        String httpResponse = """
-                Content-Type: application/json
-                Content-Length: %d
-                
-                %s
-                """.formatted(body.getBytes(StandardCharsets.UTF_8).length, body);
+    public void sendHttpResponse(HttpResponseCode httpResponseCode, String body) {
+        byte[] bodyBytes = body == null ? new byte[0] : body.getBytes(StandardCharsets.UTF_8);
 
-        log.info("Sent a response {} to the client.", httpResponse);
+        String headers =
+                "Status: %d %s\r\n".formatted(httpResponseCode.getCode(), httpResponseCode.getMeaning()) +
+                "Content-Type: application/json; charset=utf-8\r\n" +
+                "Content-Length: %d\r\n".formatted(bodyBytes.length) +
+                "\r\n";
 
-        System.out.println(httpResponse);
+        String httpPayload = headers + body;
+
+        log.info("Sent a response to the client: {}{}", httpResponseCode.getCode(), httpResponseCode.getMeaning());
+        System.out.print(httpPayload);
     }
+
 }
