@@ -1,7 +1,7 @@
 package logic;
 
-import geometry.areas.interfaces.Area;
-import geometry.model.Point;
+import ru.ifmo.se.gmt.geometry.areas.interfaces.Area;
+import ru.ifmo.se.gmt.geometry.model.Point;
 import lombok.Setter;
 
 /**

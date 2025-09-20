@@ -1,10 +1,10 @@
 package logic;
 
 import entities.request.implementations.messages.CheckoutRequest;
-import geometry.areas.factory.AreaFactory;
-import geometry.areas.interfaces.Area;
-import parser.JsonAreasConfigParser;
-import request.implementations.messages.AreasRequest;
+import ru.ifmo.se.gmt.geometry.areas.factory.AreaFactory;
+import ru.ifmo.se.gmt.geometry.areas.interfaces.Area;
+import ru.ifmo.se.gmt.parser.JsonAreasConfigParser;
+import ru.ifmo.se.gmt.request.implementations.messages.AreasRequest;
 
 import java.io.IOException;
 import java.util.List;

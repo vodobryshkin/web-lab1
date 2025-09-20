@@ -56,7 +56,7 @@
         <dependency>
             <groupId>ru.ifmo.se</groupId>
             <artifactId>bigdecimalgm</artifactId>
-            <version>1.0.0</version>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 

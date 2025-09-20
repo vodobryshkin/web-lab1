@@ -1,7 +1,7 @@
 package entities.request.implementations.messages;
 
 import entities.request.interfaces.Request;
-import geometry.model.Point;
+import ru.ifmo.se.gmt.geometry.model.Point;
 
 import java.math.BigDecimal;
 
