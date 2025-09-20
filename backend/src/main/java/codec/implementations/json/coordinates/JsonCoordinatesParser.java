@@ -3,10 +3,10 @@ package codec.implementations.json.coordinates;
 import codec.interfaces.RequestParser;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
-import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import entities.request.interfaces.Request;
 import lombok.extern.slf4j.Slf4j;
+import ru.ifmo.se.validation.request.ValidationRequest;
 
 /**
  * Класс для парсинга JSON.

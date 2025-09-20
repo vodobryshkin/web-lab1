@@ -1,8 +1,8 @@
-import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import codec.implementations.json.coordinates.JsonCoordinatesParser;
+import ru.ifmo.se.validation.request.ValidationRequest;
 
 import static org.junit.jupiter.api.Assertions.*;
 

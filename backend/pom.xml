@@ -58,6 +58,12 @@
             <artifactId>bigdecimalgm</artifactId>
             <version>1.0.1</version>
         </dependency>
+
+        <dependency>
+            <groupId>ru.ifmo.se</groupId>
+            <artifactId>coordinates-validation-web-labs</artifactId>
+            <version>1.0.0</version>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,10 +1,10 @@
 package codec.implementations.request;
 
 import entities.request.implementations.messages.CheckoutRequest;
-import entities.request.implementations.messages.ValidationRequest;
 import entities.request.interfaces.NetworkRequest;
 import ru.ifmo.se.gmt.geometry.model.Point;
 import lombok.extern.slf4j.Slf4j;
+import ru.ifmo.se.validation.request.ValidationRequest;
 
 import java.math.BigDecimal;
 

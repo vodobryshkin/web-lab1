@@ -1,0 +1,14 @@
+{
+  "x": {
+    "leftIncludingBorder": "-5",
+    "rightIncludingBorder": "3"
+  },
+  "y": {
+    "leftIncludingBorder": "-3",
+    "rightIncludingBorder": "3"
+  },
+  "r": {
+    "leftIncludingBorder": "2",
+    "rightIncludingBorder": "5"
+  }
+}

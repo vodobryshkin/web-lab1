@@ -1,6 +1,7 @@
 package codec.interfaces;
 
 import entities.request.interfaces.Request;
+import ru.ifmo.se.validation.request.ValidationRequest;
 
 import java.io.IOException;
 
@@ -14,5 +15,5 @@ public interface RequestParser {
      * @param request переданный запрос для парсинга.
      * @return сформированный после парсинга запрос.
      */
-    Request parse(Request request) throws IOException;
+    ValidationRequest parse(Request request) throws IOException;
 }

@@ -7,14 +7,14 @@ import codec.implementations.request.ValidationRequestToCheckoutRequestParser;
 import com.fastcgi.FCGIInterface;
 import entities.request.implementations.messages.CheckoutRequest;
 import entities.request.implementations.messages.DecodeRequest;
-import entities.request.implementations.messages.ValidationRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
 import entities.status.HttpResponseCode;
 import logic.CheckoutManager;
 import lombok.extern.slf4j.Slf4j;
 import network.managers.FcgiRequestBodyReader;
 import network.managers.HttpResponseSender;
-import validation.managers.ValidationManager;
+import ru.ifmo.se.validation.managers.ValidationManager;
+import ru.ifmo.se.validation.request.ValidationRequest;
 
 import java.io.IOException;
 
@@ -37,7 +37,7 @@ public class Server {
     public Server() throws IOException {
         fcgiRequestBodyReader = new FcgiRequestBodyReader();
         jsonCoordinatesParser = new JsonCoordinatesParser();
-        validationManager = new ValidationManager();
+        validationManager = new ValidationManager("backend/src/main/resources/validation.json");
         vReqToChReqParser = new ValidationRequestToCheckoutRequestParser();
         checkoutManager = new CheckoutManager("backend/src/main/resources/areas.json");
         decodeRequestDecoder = new DecodeRequestDecoder();
