@@ -1,7 +1,7 @@
 package logic;
 
-import entities.geometry.areas.interfaces.Area;
-import entities.geometry.model.Point;
+import geometry.areas.interfaces.Area;
+import geometry.model.Point;
 import lombok.Setter;
 
 /**

@@ -1,10 +1,10 @@
 package logic;
 
-import codec.implementations.json.config.JsonAreasConfigParser;
-import entities.geometry.areas.factory.AreaFactory;
-import entities.geometry.areas.interfaces.Area;
-import entities.request.implementations.messages.AreasRequest;
 import entities.request.implementations.messages.CheckoutRequest;
+import geometry.areas.factory.AreaFactory;
+import geometry.areas.interfaces.Area;
+import parser.JsonAreasConfigParser;
+import request.implementations.messages.AreasRequest;
 
 import java.io.IOException;
 import java.util.List;

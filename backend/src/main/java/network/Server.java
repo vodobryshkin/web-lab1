@@ -39,7 +39,7 @@ public class Server {
         jsonCoordinatesParser = new JsonCoordinatesParser();
         validationManager = new ValidationManager();
         vReqToChReqParser = new ValidationRequestToCheckoutRequestParser();
-        checkoutManager = new CheckoutManager("/home/studs/s465774/web/web-lab1/backend/src/main/resources/areas.json");
+        checkoutManager = new CheckoutManager("backend/src/main/resources/areas.json");
         decodeRequestDecoder = new DecodeRequestDecoder();
         jsonCoordinatesDecoder = new JsonCoordinatesDecoder();
         httpResponseSender = new HttpResponseSender();

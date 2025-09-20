@@ -1,9 +1,9 @@
 package codec.implementations.request;
 
-import entities.geometry.model.Point;
 import entities.request.implementations.messages.CheckoutRequest;
 import entities.request.implementations.messages.ValidationRequest;
 import entities.request.interfaces.NetworkRequest;
+import geometry.model.Point;
 import lombok.extern.slf4j.Slf4j;
 
 import java.math.BigDecimal;

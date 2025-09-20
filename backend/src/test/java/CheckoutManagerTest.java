@@ -1,5 +1,5 @@
-import entities.geometry.model.Point;
 import entities.request.implementations.messages.CheckoutRequest;
+import geometry.model.Point;
 import logic.CheckoutManager;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
