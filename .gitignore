@@ -31,3 +31,4 @@ bin/
 .DS_Store
 
 backend/logs/
+frontend/libs
