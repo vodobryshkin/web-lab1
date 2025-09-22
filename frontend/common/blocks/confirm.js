@@ -86,10 +86,12 @@ async function sendPoint(x, y, r) {
     const start = performance.now();
 
     try {
+        let sendDataResponse = true;
+
         const response = await fetch('/fcgi-bin/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ x, y, r })
+            body: JSON.stringify({ sendDataResponse, x, y, r })
         });
 
         const result = await response.json();

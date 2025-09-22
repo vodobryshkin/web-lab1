@@ -1,4 +1,4 @@
-package entities.status;
+package http.status;
 
 import lombok.Getter;
 
