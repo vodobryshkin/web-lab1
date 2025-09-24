@@ -8,8 +8,8 @@ import com.fastcgi.FCGIInterface;
 import entities.request.implementations.messages.CheckoutRequest;
 import entities.request.implementations.messages.DecodeRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
-import http.minio.client.MinioHttpClient;
-import http.status.HttpResponseCode;
+import minio.client.unirest.MinioHttpClient;
+import minio.status.HttpResponseCode;
 import logic.CheckoutManager;
 import lombok.extern.slf4j.Slf4j;
 import network.managers.FcgiRequestBodyReader;
@@ -60,7 +60,7 @@ public class Server {
      * Результат проверки сохраняется в status, затем преобразуется в запрос на декодирование в json, декодируется
      * и отправляется ответ.
      */
-    public void listenAndServe() {
+    public void listenAndServe() throws IOException {
         FCGIInterface fcgiInterface = new FCGIInterface();
         while (fcgiInterface.FCGIaccept() >= 0) {
             ParseRequestBodyRequest request = fcgiRequestBodyReader.readRequestBody();
@@ -77,13 +77,15 @@ public class Server {
                         DecodeRequest decodeRequest = decodeRequestDecoder.decode(checkoutRequest, status);
                         String content = jsonCoordinatesDecoder.decode(decodeRequest);
 
+                        minioHttpClient.putResponse(content);
+
                         httpResponseSender.sendHttpResponse(HttpResponseCode.Ok, content);
                     } else {
                         httpResponseSender.sendHttpResponse(HttpResponseCode.UnprocessableEntity, "");
                         log.info("Validation request failed.");
                     }
                 } else {
-                    String content = minioHttpClient.getResponse().getBody();
+                    String content = minioHttpClient.getResponse().body().string();
                     httpResponseSender.sendHttpResponse(HttpResponseCode.Ok, content);
                 }
 
