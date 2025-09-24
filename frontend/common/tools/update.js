@@ -1,6 +1,7 @@
 import {draw, drawPoint} from "../blocks/canvas.js";
 import {pointStorage} from "./storage-work.js";
 import {toast} from "./toast.js";
+import {addInfoAboutPoint} from "../blocks/confirm.js"
 
 export const DEFAULT_R_NAME = "R";
 
@@ -36,8 +37,10 @@ async function reset(r) {
         const result = await response.json();
 
         result.points.forEach(point => {
-            pointStorage.addPoint(point.x, point.y)
-            drawPoint(point.x, point.y, r)
+            pointStorage.addPoint(point.x, point.y);
+            drawPoint(point.x, point.y, r);
+            console.log("1")
+            addInfoAboutPoint(point.x, point.y, point.r, point.status, point.current_time, point.duration);
         })
     } catch (error) {
         toast(error);

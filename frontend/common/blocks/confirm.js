@@ -53,38 +53,28 @@ async function validate() {
             let data = await sendPoint(x[i], y, r);
 
             if (data) {
-                addInfoAboutPoint(data.x, data.y, data.r, data.status, data.elapsed);
+                pointStorage.addPoint(x, y);
+                drawPoint(x, y, r);
+                addInfoAboutPoint(data.x, data.y, data.r, data.status, data.current_time, data.duration);
             }
         }
 
     }
 }
 
-function addInfoAboutPoint(x, y, r, status, elapsed) {
-    pointStorage.addPoint(x, y);
-    drawPoint(x, y, r);
-
+export function addInfoAboutPoint(x, y, r, status, current_time, duration) {
     let table = document.getElementById("result-table");
     let row = table.insertRow(1);
-
-    const timeString = (new Date).toLocaleTimeString('ru-RU', {
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit',
-        hour12: false
-    });
 
     row.insertCell(0).textContent = x;
     row.insertCell(1).textContent = y;
     row.insertCell(2).textContent = r;
     row.insertCell(3).textContent = status ? "Попал" : "Не попал";
-    row.insertCell(4).textContent = timeString;
-    row.insertCell(5).textContent = elapsed + " ms";
+    row.insertCell(4).textContent = current_time;
+    row.insertCell(5).textContent = duration + " ms";
 }
 
 async function sendPoint(x, y, r) {
-    const start = performance.now();
-
     try {
         let sendDataResponse = true;
 
@@ -95,9 +85,8 @@ async function sendPoint(x, y, r) {
         });
 
         const result = await response.json();
-        const elapsed = performance.now() - start;
 
-        return { ...result, elapsed };
+        return { ...result};
     } catch (error) {
         toast(error);
         return null;

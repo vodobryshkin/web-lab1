@@ -18,13 +18,13 @@ public class DecodeRequestDecoder {
      * @param status результат проверки бизнес-логикой.
      * @return сформированный запрос на десереализацию.
      */
-    public DecodeRequest decode(CheckoutRequest checkoutRequest, boolean status) {
+    public DecodeRequest decode(CheckoutRequest checkoutRequest, boolean status, long duration) {
         BigDecimal x = checkoutRequest.point().getX();
         BigDecimal y = checkoutRequest.point().getY();
         BigDecimal r = checkoutRequest.r();
 
-        log.info("Created decode request with fields: x={}, y={}, r={}, status={}.", x, y, r, status);
+        log.info("Created decode request with fields: x={}, y={}, r={}, status={} duration={}.", x, y, r, status, duration);
 
-        return new DecodeRequest(x, y, r, status);
+        return new DecodeRequest(x, y, r, status, duration);
     }
 }

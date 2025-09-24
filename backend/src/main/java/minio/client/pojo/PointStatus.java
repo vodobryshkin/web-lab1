@@ -1,9 +1,7 @@
 package minio.client.pojo;
 
+import com.google.gson.annotations.SerializedName;
 import lombok.Data;
-
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Класс для реализации удобного парсинга в объект с get-запроса.
@@ -14,5 +12,7 @@ public class PointStatus {
     private String y;
     private String r;
     private Boolean status;
-    private final String date = ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+    @SerializedName("current_time")
+    private String date;
+    private long duration;
 }

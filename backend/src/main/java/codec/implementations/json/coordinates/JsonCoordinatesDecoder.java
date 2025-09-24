@@ -4,6 +4,9 @@ import codec.interfaces.Decoder;
 import entities.request.implementations.messages.DecodeRequest;
 import lombok.extern.slf4j.Slf4j;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Класс для перекодировки из запроса на десериализацию в JSON.
  */
@@ -24,8 +27,11 @@ public class JsonCoordinatesDecoder implements Decoder {
                     "x": %s,
                     "y": "%s",
                     "r": "%s",
-                    "status": %s
+                    "status": %s,
+                    "current_time": "%s",
+                    "duration": %s
                 }
-                """.formatted(data.x(), data.y(), data.r(), data.status());
+                """.formatted(data.x(), data.y(), data.r(), data.status(),
+                ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")), data.duration());
     }
 }

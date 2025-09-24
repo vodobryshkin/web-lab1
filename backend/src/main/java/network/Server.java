@@ -65,6 +65,8 @@ public class Server {
         while (fcgiInterface.FCGIaccept() >= 0) {
             ParseRequestBodyRequest request = fcgiRequestBodyReader.readRequestBody();
 
+            long startTime = System.nanoTime();
+
             ValidationManagerOutRequest validationManagerOutRequest  = jsonHttpRequestParser.parse(request);
 
             if (validationManagerOutRequest != null) {
@@ -74,12 +76,14 @@ public class Server {
 
                         boolean status = checkoutManager.checkRequest(checkoutRequest);
 
-                        DecodeRequest decodeRequest = decodeRequestDecoder.decode(checkoutRequest, status);
+                        long processingMs = (System.nanoTime() - startTime) / 1000000;
+
+                        DecodeRequest decodeRequest = decodeRequestDecoder.decode(checkoutRequest, status, processingMs);
                         String content = jsonCoordinatesDecoder.decode(decodeRequest);
 
-                        minioHttpClient.putResponse(content);
-
                         httpResponseSender.sendHttpResponse(HttpResponseCode.Ok, content);
+
+                        minioHttpClient.putResponse(content);
                     } else {
                         httpResponseSender.sendHttpResponse(HttpResponseCode.UnprocessableEntity, "");
                         log.info("Validation request failed.");

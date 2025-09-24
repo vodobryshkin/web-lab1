@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -18,7 +20,7 @@ class JsonCoordinatesDecoderTest {
         BigDecimal y = new BigDecimal("2.5");
         BigDecimal r = new BigDecimal("3.5");
 
-        DecodeRequest request = new DecodeRequest(x, y, r, true);
+        DecodeRequest request = new DecodeRequest(x, y, r, true, 0);
         String json = decoder.decode(request);
 
         String expected = """
@@ -26,10 +28,11 @@ class JsonCoordinatesDecoderTest {
                     "x": 1.5,
                     "y": \"2.5\",
                     "r": \"3.5\",
-                    "status": true
+                    "status": true,
+                    "current_time": "%s",
+                    "duration": 0
                 }
-                """;
-        System.out.println(json);
+                """.formatted(ZonedDateTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss")));
         assertEquals(expected, json);
     }
 
@@ -40,7 +43,7 @@ class JsonCoordinatesDecoderTest {
         BigDecimal y = new BigDecimal("-20.5");
         BigDecimal r = new BigDecimal("-3");
 
-        DecodeRequest request = new DecodeRequest(x, y, r, false);
+        DecodeRequest request = new DecodeRequest(x, y, r, false, 0);
         String json = decoder.decode(request);
 
         System.out.println(json);
@@ -58,7 +61,7 @@ class JsonCoordinatesDecoderTest {
         BigDecimal y = new BigDecimal("0");
         BigDecimal r = new BigDecimal("0");
 
-        DecodeRequest request = new DecodeRequest(x, y, r, false);
+        DecodeRequest request = new DecodeRequest(x, y, r, false, 0);
         String json = decoder.decode(request);
 
         assertTrue(json.contains("\"x\": 0"));
@@ -74,7 +77,7 @@ class JsonCoordinatesDecoderTest {
         BigDecimal y = new BigDecimal("0");
         BigDecimal r = new BigDecimal("0");
 
-        DecodeRequest request = new DecodeRequest(x, y, r, true);
+        DecodeRequest request = new DecodeRequest(x, y, r, true, 0);
         String json = decoder.decode(request);
 
         assertTrue(json.trim().startsWith("{"));

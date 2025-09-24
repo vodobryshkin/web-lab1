@@ -12,5 +12,6 @@ import java.math.BigDecimal;
  * @param y координата по оси y.
  * @param r радиус на координатной плоскости.
  * @param status результат обработки бизнес-логикой.
+ * @param duration продолжительность работы скрипта.
  */
-public record DecodeRequest(BigDecimal x, BigDecimal y, BigDecimal r, boolean status) implements Request {}
+public record DecodeRequest(BigDecimal x, BigDecimal y, BigDecimal r, boolean status, long duration) implements Request {}
