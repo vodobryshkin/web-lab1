@@ -53,8 +53,8 @@ async function validate() {
             let data = await sendPoint(x[i], y, r);
 
             if (data) {
-                pointStorage.addPoint(x, y);
-                drawPoint(x, y, r);
+                pointStorage.addPoint(x[i], y);
+                drawPoint(x[i], y, r);
                 addInfoAboutPoint(data.x, data.y, data.r, data.status, data.current_time, data.duration);
             }
         }
@@ -76,12 +76,10 @@ export function addInfoAboutPoint(x, y, r, status, current_time, duration) {
 
 async function sendPoint(x, y, r) {
     try {
-        let sendDataResponse = true;
-
         const response = await fetch('/fcgi-bin/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ sendDataResponse, x, y, r })
+            body: JSON.stringify({ x, y, r })
         });
 
         const result = await response.json();

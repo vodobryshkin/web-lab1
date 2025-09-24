@@ -124,8 +124,6 @@ export function drawPoint(x, y, r) {
     let correctX = x * (rLength / r) + canvas.width / 2;
     let correctY = -y * (rLength / r) + canvas.width / 2;
 
-    // alert(`x=${correctX} y=${correctY}`);
-
     ctx.beginPath();
     ctx.arc(correctX, correctY, 5, 0, 2 * Math.PI);
     ctx.fill();

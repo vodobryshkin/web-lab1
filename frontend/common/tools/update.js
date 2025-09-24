@@ -26,22 +26,22 @@ async function reset(r) {
 
     try {
         let sendDataResponse = false;
-        let minioRequestType = "get";
 
-        const response = await fetch('/fcgi-bin/', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({sendDataResponse, minioRequestType})
+        const response = await fetch(`/fcgi-bin/?sendDataResponse=${sendDataResponse}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         });
 
         const result = await response.json();
 
-        result.points.forEach(point => {
-            pointStorage.addPoint(point.x, point.y);
-            drawPoint(point.x, point.y, r);
-            console.log("1")
-            addInfoAboutPoint(point.x, point.y, point.r, point.status, point.current_time, point.duration);
-        })
+        if (result.points.length > 0) {
+            result.points.forEach(point => {
+                pointStorage.addPoint(point.x, point.y);
+                drawPoint(point.x, point.y, r);
+                addInfoAboutPoint(point.x, point.y, point.r, point.status, point.current_time, point.duration);
+            })
+        }
+
     } catch (error) {
         toast(error);
         return null;
