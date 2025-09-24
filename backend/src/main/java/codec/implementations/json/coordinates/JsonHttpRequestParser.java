@@ -29,9 +29,7 @@ public class JsonHttpRequestParser implements RequestParser {
         if (request instanceof ParseRequestBodyRequest parseRequestBodyRequest) {
             try {
                 JsonObject obj = gson.fromJson(parseRequestBodyRequest.requestBody(), JsonObject.class);
-
                 boolean isDataAdderRequest = obj.get("sendDataResponse").getAsBoolean();
-
                 if (isDataAdderRequest) {
                     String x = obj.get("x").getAsString();
                     String y = obj.get("y").getAsString();

@@ -21,6 +21,8 @@ async function reset(r) {
 
     pointStorage.clearPoints();
 
+    draw(r);
+
     try {
         let sendDataResponse = false;
         let minioRequestType = "get";
@@ -37,11 +39,8 @@ async function reset(r) {
             pointStorage.addPoint(point.x, point.y)
             drawPoint(point.x, point.y, r)
         })
-
-        draw(r);
     } catch (error) {
         toast(error);
-        draw(r);
         return null;
     }
 

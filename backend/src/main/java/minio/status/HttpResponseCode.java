@@ -1,4 +1,4 @@
-package http.status;
+package minio.status;
 
 import lombok.Getter;
 

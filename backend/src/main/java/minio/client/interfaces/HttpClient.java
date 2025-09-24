@@ -1,7 +1,8 @@
-package http.interfaces;
+package minio.client.interfaces;
 
-import http.status.HttpResponseCode;
-import kong.unirest.core.HttpResponse;
+import okhttp3.Response;
+
+import java.io.IOException;
 
 /**
  * Интерфейс для определения функциональности конкретных http-клиентов.
@@ -12,13 +13,12 @@ public interface HttpClient {
      *
      * @return данные, которые требовалось получить с помощью get-запроса.
      */
-    HttpResponse<String> getResponse();
+    Response getResponse() throws IOException;
 
     /**
      * Метод для реализации Http-метода POST.
      *
      * @param body тело отправляемого запроса.
-     * @return код ответа http-запроса.
      */
-    HttpResponseCode postResponse(String body);
+    void putResponse(String body) throws IOException;
 }

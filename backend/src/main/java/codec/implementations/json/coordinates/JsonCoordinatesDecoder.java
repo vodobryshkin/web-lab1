@@ -2,10 +2,12 @@ package codec.implementations.json.coordinates;
 
 import codec.interfaces.Decoder;
 import entities.request.implementations.messages.DecodeRequest;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Класс для перекодировки из запроса на десериализацию в JSON.
  */
+@Slf4j
 public class JsonCoordinatesDecoder implements Decoder {
 
     /**
@@ -16,6 +18,7 @@ public class JsonCoordinatesDecoder implements Decoder {
      */
     @Override
     public String decode(DecodeRequest data) {
+        log.info("Successfully created JSON response body.");
         return """
                 {
                     "x": %s,

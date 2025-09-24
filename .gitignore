@@ -31,4 +31,5 @@ bin/
 .DS_Store
 
 backend/logs/
-frontend/libs
+frontend/libs/
+config/vdska
