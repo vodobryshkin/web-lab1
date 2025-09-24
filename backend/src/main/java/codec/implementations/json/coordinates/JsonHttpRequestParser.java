@@ -28,25 +28,22 @@ public class JsonHttpRequestParser implements RequestParser {
 
         if (request instanceof ParseRequestBodyRequest parseRequestBodyRequest) {
             try {
+                if (parseRequestBodyRequest.method().equals("GET")) {
+                    if (parseRequestBodyRequest.requestBody().equals("sendDataResponse=false")) {
+                        return new MinioGetRequest();
+                    }
+
+                    throw new Exception();
+                }
                 JsonObject obj = gson.fromJson(parseRequestBodyRequest.requestBody(), JsonObject.class);
-                boolean isDataAdderRequest = obj.get("sendDataResponse").getAsBoolean();
-                if (isDataAdderRequest) {
-                    String x = obj.get("x").getAsString();
-                    String y = obj.get("y").getAsString();
-                    String r = obj.get("r").getAsString();
 
-                    log.info("Created validation request with fields: x={}, y={}, r={}.", x, y, r);
+                String x = obj.get("x").getAsString();
+                String y = obj.get("y").getAsString();
+                String r = obj.get("r").getAsString();
 
-                    return new ValidationRequest(x, y, r);
-                }
+                log.info("Created validation request with fields: x={}, y={}, r={}.", x, y, r);
 
-                String requestType = obj.get("minioRequestType").getAsString();
-
-                if (requestType.equals("get")) {
-                    return new MinioGetRequest();
-                }
-
-                throw new Exception();
+                return new ValidationRequest(x, y, r);
 
             } catch (Exception e) {
                 log.error("Could not parse a JSON.");

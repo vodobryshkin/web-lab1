@@ -13,7 +13,6 @@ import okhttp3.*;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Map;
 
@@ -53,9 +52,13 @@ public class MinioHttpClient implements HttpClient {
     @Override
     public void putResponse(String body) throws IOException {
         String contentString = getResponse().body().string();
-        Storage content = new Gson().fromJson(contentString, Storage.class);
-        if (content.getPointStatusList() == null) {
-            content.setPointStatusList(new ArrayList<>());
+
+        Storage content;
+
+        if (contentString.equals("{\"points\":{}}")) {
+            content = new Storage();
+        } else {
+            content = new Gson().fromJson(contentString, Storage.class);
         }
 
         PointStatus pointStatus = new Gson().fromJson(body, PointStatus.class);

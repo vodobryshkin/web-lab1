@@ -19,7 +19,7 @@ class JsonHttpRequestParserTest {
                 {"x": 1.5, "y": -2.25, "r": 3.0, "sendDataResponse": true}
                 """;
 
-        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
+        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data, "POST");
 
         ValidationRequest result = (ValidationRequest) parser.parse(json);
 
@@ -37,7 +37,7 @@ class JsonHttpRequestParserTest {
                 {"x": 1, "y": 0, "r": 5, "sendDataResponse": true}
                 """;
 
-        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
+        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data, "POST");
 
         ValidationRequest result = (ValidationRequest) parser.parse(json);
 
@@ -55,7 +55,7 @@ class JsonHttpRequestParserTest {
                 {"x": "2.75", "y": "-3.5", "r": "1.25", "sendDataResponse": true}
                 """;
 
-        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data);
+        ParseRequestBodyRequest json = new ParseRequestBodyRequest(data, "POST");
 
         ValidationRequest result = (ValidationRequest) parser.parse(json);
 

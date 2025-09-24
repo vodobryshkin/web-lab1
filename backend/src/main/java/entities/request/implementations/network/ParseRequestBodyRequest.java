@@ -7,4 +7,4 @@ import entities.request.interfaces.NetworkRequest;
  *
  * @param requestBody тело запроса.
  */
-public record ParseRequestBodyRequest(String requestBody) implements NetworkRequest {}
+public record ParseRequestBodyRequest(String requestBody, String method) implements NetworkRequest {}

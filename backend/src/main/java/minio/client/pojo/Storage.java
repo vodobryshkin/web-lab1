@@ -3,6 +3,7 @@ package minio.client.pojo;
 import com.google.gson.annotations.SerializedName;
 import lombok.Data;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,4 +13,8 @@ import java.util.List;
 public class Storage {
     @SerializedName("points")
     private List<PointStatus> pointStatusList;
+
+    public Storage() {
+        pointStatusList = new ArrayList<>();
+    }
 }
