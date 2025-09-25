@@ -8,12 +8,12 @@ import com.fastcgi.FCGIInterface;
 import entities.request.implementations.messages.CheckoutRequest;
 import entities.request.implementations.messages.DecodeRequest;
 import entities.request.implementations.network.ParseRequestBodyRequest;
-import minio.client.unirest.MinioHttpClient;
-import minio.status.HttpResponseCode;
+import minio.client.okhttp.MinioHttpClient;
 import logic.CheckoutManager;
 import lombok.extern.slf4j.Slf4j;
 import network.managers.FcgiRequestBodyReader;
 import network.managers.HttpResponseSender;
+import network.status.HttpResponseCode;
 import ru.ifmo.se.validation.managers.ValidationManager;
 import ru.ifmo.se.validation.request.ValidationManagerOutRequest;
 import ru.ifmo.se.validation.request.ValidationRequest;
@@ -40,9 +40,9 @@ public class Server {
     public Server() throws IOException {
         fcgiRequestBodyReader = new FcgiRequestBodyReader();
         jsonHttpRequestParser = new JsonHttpRequestParser();
-        validationManager = new ValidationManager("backend/src/main/resources/validation.json");
+        validationManager = new ValidationManager(System.getenv("VALIDATION_PATH"));
         vReqToChReqParser = new ValidationRequestToCheckoutRequestParser();
-        checkoutManager = new CheckoutManager("backend/src/main/resources/areas.json");
+        checkoutManager = new CheckoutManager(System.getenv("AREAS_PATH"));
         decodeRequestDecoder = new DecodeRequestDecoder();
         jsonCoordinatesDecoder = new JsonCoordinatesDecoder();
         httpResponseSender = new HttpResponseSender();

@@ -1,4 +1,4 @@
-package minio.status;
+package network.status;
 
 import lombok.Getter;
 

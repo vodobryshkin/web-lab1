@@ -1,4 +1,4 @@
-package minio.client.unirest;
+package minio.client.okhttp;
 
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
